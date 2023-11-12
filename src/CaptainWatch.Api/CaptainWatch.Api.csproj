@@ -9,10 +9,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj" />
   </ItemGroup>
 
 </Project>

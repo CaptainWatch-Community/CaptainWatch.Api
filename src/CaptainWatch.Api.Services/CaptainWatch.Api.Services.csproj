@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,3 +1,6 @@
+using CaptainWatch.Api.Domain.Interface.Buisiness;
+using CaptainWatch.Api.Services.Movies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IMovieServiceRead, MovieServiceRead>();
 
 var app = builder.Build();
 
