@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Repository.Db.EntityFramework\CaptainWatch.Api.Repository.Db.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>
