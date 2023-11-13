@@ -1,4 +1,6 @@
 using CaptainWatch.Api.Domain.Interface.Buisiness;
+using CaptainWatch.Api.Domain.Interface.Repository;
+using CaptainWatch.Api.Repository.Db.Movies;
 using CaptainWatch.Api.Services.Movies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +12,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//dependency injection for services
 builder.Services.AddScoped<IMovieServiceRead, MovieServiceRead>();
+
+//dependency injection for repositories
+builder.Services.AddScoped<IMovieRepo, MovieRepo>();
 
 var app = builder.Build();
 

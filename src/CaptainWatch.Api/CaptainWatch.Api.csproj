@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Repository.Db\CaptainWatch.Api.Repository.Db.csproj" />
     <ProjectReference Include="..\CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj" />
   </ItemGroup>
 
