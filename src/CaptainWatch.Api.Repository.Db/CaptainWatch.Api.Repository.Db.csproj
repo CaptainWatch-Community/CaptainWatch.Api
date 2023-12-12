@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Repository.Db.EntityFramework\CaptainWatch.Api.Repository.Db.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>

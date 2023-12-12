@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Repository.Db.EntityFramework\CaptainWatch.Api.Repository.Db.EntityFramework.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Repository.Db\CaptainWatch.Api.Repository.Db.csproj" />
+    <ProjectReference Include="..\CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj" />
+  </ItemGroup>
+
+</Project>
