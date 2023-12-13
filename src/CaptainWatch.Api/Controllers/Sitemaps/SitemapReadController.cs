@@ -28,7 +28,7 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
         /// </summary>
         [HttpGet("movies")]
         [ActionName("GetMovieSitemapData")]
-        [SwaggerOperation(Tags = new[] { "Sitemap" })]
+        [SwaggerOperation(Summary = "Get data to generate a sitemap for movies", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<MovieSitemapDto>>> GetMovieSitemapData()
         {

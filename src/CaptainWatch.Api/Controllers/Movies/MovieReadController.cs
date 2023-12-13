@@ -27,7 +27,7 @@ namespace CaptainWatch.Api.Controllers.Movies
         /// </summary>
         [HttpGet("poc")]
         [ActionName("GetMoviesPoc")]
-        [SwaggerOperation(Tags = new[] { "Movie" })]
+        [SwaggerOperation(Summary = "Get all movies poc", Tags = new[] { "Movie" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<MoviePocDto>>> GetMovies()
         {
