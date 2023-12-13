@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace CaptainWatch.Api.Controllers
+namespace CaptainWatch.Api.Controllers.Movies
 {
     [Route("api/movie")]
     [ApiController]

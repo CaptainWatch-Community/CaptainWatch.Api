@@ -4,6 +4,7 @@ using CaptainWatch.Api.Middlewares;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using CaptainWatch.Api.Repository.Db.Movies;
 using CaptainWatch.Api.Services.Movies;
+using CaptainWatch.Api.Services.Sitemaps;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -49,6 +50,7 @@ builder.Services.AddSwaggerGen();
 
 //dependency injection for services
 builder.Services.AddScoped<IMovieServiceRead, MovieServiceRead>();
+builder.Services.AddScoped<ISitemapServiceRead, SitemapServiceRead>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
