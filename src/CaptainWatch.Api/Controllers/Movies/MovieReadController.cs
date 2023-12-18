@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace CaptainWatch.Api.Controllers
+namespace CaptainWatch.Api.Controllers.Movies
 {
     [Route("api/movie")]
     [ApiController]
@@ -27,7 +27,7 @@ namespace CaptainWatch.Api.Controllers
         /// </summary>
         [HttpGet("poc")]
         [ActionName("GetMoviesPoc")]
-        [SwaggerOperation(Tags = new[] { "Movie" })]
+        [SwaggerOperation(Summary = "Get all movies poc", Tags = new[] { "Movie" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<MoviePocDto>>> GetMovies()
         {

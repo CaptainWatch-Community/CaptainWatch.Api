@@ -5,5 +5,6 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
     public interface IMovieRepo
     {
         Task<IEnumerable<MoviePocBo>> GetMoviesPoc();
+        Task<IEnumerable<MovieBo>> GetMoviesWithPositiveSiteScore();
     }
 }
