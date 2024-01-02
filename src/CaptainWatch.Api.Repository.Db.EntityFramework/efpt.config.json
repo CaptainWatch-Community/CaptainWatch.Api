@@ -18,6 +18,10 @@
       {
          "Name": "[dbo].[Movie]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TV]",
+         "ObjectType": 0
       }
    ],
    "UiHint": "msi.Top250.dbo",
@@ -26,6 +30,7 @@
    "UseDatabaseNames": false,
    "UseDateOnlyTimeOnly": false,
    "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
    "UseFluentApiOnly": true,
    "UseHandleBars": false,
    "UseHierarchyId": false,
