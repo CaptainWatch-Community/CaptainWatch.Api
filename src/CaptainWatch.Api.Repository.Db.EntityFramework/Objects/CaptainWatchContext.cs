@@ -15,6 +15,8 @@ public partial class CaptainWatchContext : DbContext
 
     public virtual DbSet<Movie> Movie { get; set; }
 
+    public virtual DbSet<Tv> Tv { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Movie>(entity =>
@@ -161,6 +163,118 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.VoteCount).HasColumnName("vote_count");
             entity.Property(e => e.WatchlistCount).HasColumnName("watchlist_count");
             entity.Property(e => e.Wplay).HasColumnName("wplay");
+        });
+
+        modelBuilder.Entity<Tv>(entity =>
+        {
+            entity.ToTable("TV");
+
+            entity.HasIndex(e => e.FirstAirDate, "CL_TV_AirDate");
+
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.BackdropPath)
+                .HasMaxLength(255)
+                .HasColumnName("backdrop_path");
+            entity.Property(e => e.CanalplayAvailability).HasColumnName("canalplay_availability");
+            entity.Property(e => e.CanalplayAvailabilityDate)
+                .HasColumnType("datetime")
+                .HasColumnName("canalplay_availability_date");
+            entity.Property(e => e.CreatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("created_date");
+            entity.Property(e => e.FirstAirDate)
+                .HasColumnType("datetime")
+                .HasColumnName("first_air_date");
+            entity.Property(e => e.Homepage)
+                .HasMaxLength(2000)
+                .HasColumnName("homepage");
+            entity.Property(e => e.ImdbAnime).HasColumnName("imdb_anime");
+            entity.Property(e => e.ImdbId)
+                .HasMaxLength(50)
+                .HasColumnName("imdb_id");
+            entity.Property(e => e.ImdbLastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("imdb_last_update");
+            entity.Property(e => e.ImdbNumVotes).HasColumnName("imdb_num_votes");
+            entity.Property(e => e.ImdbRating).HasColumnName("imdb_rating");
+            entity.Property(e => e.InProduction).HasColumnName("in_production");
+            entity.Property(e => e.ItunesArtistId)
+                .HasMaxLength(200)
+                .HasColumnName("itunes_artist_id");
+            entity.Property(e => e.ItunesLastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("itunes_last_update");
+            entity.Property(e => e.LastAirDate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_air_date");
+            entity.Property(e => e.LastEpisodeToAirNumber).HasColumnName("last_episode_to_air_number");
+            entity.Property(e => e.LastEpisodeToAirSeason).HasColumnName("last_episode_to_air_season");
+            entity.Property(e => e.LastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update");
+            entity.Property(e => e.MainTrailer)
+                .HasMaxLength(50)
+                .HasColumnName("main_trailer");
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(500)
+                .HasColumnName("name");
+            entity.Property(e => e.NetflixAvailability)
+                .HasDefaultValueSql("((0))")
+                .HasColumnName("netflix_availability");
+            entity.Property(e => e.NetflixAvailabilityDate)
+                .HasColumnType("datetime")
+                .HasColumnName("netflix_availability_date");
+            entity.Property(e => e.NetflixId)
+                .HasMaxLength(50)
+                .HasColumnName("netflix_id");
+            entity.Property(e => e.NetflixSeasonCount).HasColumnName("netflix_season_count");
+            entity.Property(e => e.NetflixSeasonUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("netflix_season_update");
+            entity.Property(e => e.NextAirDate)
+                .HasColumnType("datetime")
+                .HasColumnName("next_air_date");
+            entity.Property(e => e.NextEpisodeToAirNumber).HasColumnName("next_episode_to_air_number");
+            entity.Property(e => e.NextEpisodeToAirSeason).HasColumnName("next_episode_to_air_season");
+            entity.Property(e => e.NumberOfEpisodes).HasColumnName("number_of_episodes");
+            entity.Property(e => e.NumberOfSeasons).HasColumnName("number_of_seasons");
+            entity.Property(e => e.OriginalName)
+                .IsRequired()
+                .HasMaxLength(500)
+                .HasColumnName("original_name");
+            entity.Property(e => e.Overview)
+                .IsUnicode(false)
+                .HasColumnName("overview");
+            entity.Property(e => e.OverviewFr)
+                .IsUnicode(false)
+                .HasColumnName("overview_fr");
+            entity.Property(e => e.Popularity).HasColumnName("popularity");
+            entity.Property(e => e.PosterPath)
+                .HasMaxLength(255)
+                .HasColumnName("poster_path");
+            entity.Property(e => e.PosterPathFr)
+                .HasMaxLength(255)
+                .HasColumnName("poster_path_fr");
+            entity.Property(e => e.RealOriginalName)
+                .IsRequired()
+                .HasMaxLength(500)
+                .HasColumnName("real_original_name");
+            entity.Property(e => e.SiteScore).HasColumnName("site_score");
+            entity.Property(e => e.SiteScoreFuture).HasColumnName("site_score_future");
+            entity.Property(e => e.SiteScorePast).HasColumnName("site_score_past");
+            entity.Property(e => e.SiteScorePresent).HasColumnName("site_score_present");
+            entity.Property(e => e.SiteVoteAverage).HasColumnName("site_vote_average");
+            entity.Property(e => e.SiteVoteCount).HasColumnName("site_vote_count");
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .HasColumnName("status");
+            entity.Property(e => e.TvdbId).HasColumnName("tvdb_id");
+            entity.Property(e => e.VoteAverage).HasColumnName("vote_average");
+            entity.Property(e => e.VoteCount).HasColumnName("vote_count");
+            entity.Property(e => e.WatchlistCount).HasColumnName("watchlist_count");
         });
 
         OnModelCreatingPartial(modelBuilder);

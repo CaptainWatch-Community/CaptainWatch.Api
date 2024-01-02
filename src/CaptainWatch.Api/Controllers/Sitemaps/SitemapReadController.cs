@@ -35,5 +35,18 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
             var movies = await _sitemapServiceRead.GetMovieSitemapData();
             return Ok(movies.ToDto());
         }
+
+        /// <summary>
+        /// Get data to generate a sitemap for series
+        /// 
+        [HttpGet("series")]
+        [ActionName("GetSerieSitemapData")]
+        [SwaggerOperation(Summary = "Get data to generate a sitemap for series", Tags = new[] { "Sitemap" })]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IEnumerable<SerieSitemapDto>>> GetSerieSitemapData()
+        {
+            var series = await _sitemapServiceRead.GetSerieSitemapData();
+            return Ok(series.ToDto());
+        }
     }
 }

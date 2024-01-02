@@ -9,10 +9,12 @@ namespace CaptainWatch.Api.Services.Sitemaps
         #region Declarations
 
         private readonly IMovieRepo _movieRepo;
+        private readonly ISerieRepo _serieRepo;
 
-        public SitemapServiceRead(IMovieRepo movieRepo)
+        public SitemapServiceRead(IMovieRepo movieRepo, ISerieRepo serieRepo)
         {
             _movieRepo = movieRepo;
+            _serieRepo = serieRepo;
         }
 
         #endregion
@@ -25,6 +27,19 @@ namespace CaptainWatch.Api.Services.Sitemaps
             {
                 Title = movie.Title ?? movie.OriginalTitle,
                 Id = movie.Id
+            }).ToList();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<SerieSitemapBo>> GetSerieSitemapData()
+        {
+            var series = await _serieRepo.GetSeriesWithPositiveSiteScore();
+
+            var result = series.Select(serie => new SerieSitemapBo
+            {
+                Title = serie.Title ?? serie.OriginalTitle,
+                Id = serie.Id
             }).ToList();
 
             return result;

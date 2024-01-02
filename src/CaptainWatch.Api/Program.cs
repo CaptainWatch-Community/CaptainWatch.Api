@@ -3,6 +3,7 @@ using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Middlewares;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using CaptainWatch.Api.Repository.Db.Movies;
+using CaptainWatch.Api.Repository.Db.Series;
 using CaptainWatch.Api.Services.Movies;
 using CaptainWatch.Api.Services.Sitemaps;
 using Microsoft.AspNetCore.Authentication;
@@ -55,6 +56,7 @@ builder.Services.AddScoped<ISitemapServiceRead, SitemapServiceRead>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
+builder.Services.AddScoped<ISerieRepo, SerieRepo>();
 
 //dependency injection for db context
 builder.Services.AddDbContext<CaptainWatchContext>(
