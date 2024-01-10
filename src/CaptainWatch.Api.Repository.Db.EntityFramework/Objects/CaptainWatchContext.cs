@@ -277,6 +277,7 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.WatchlistCount).HasColumnName("watchlist_count");
         });
 
+        OnModelCreatingGeneratedProcedures(modelBuilder);
         OnModelCreatingPartial(modelBuilder);
     }
 
