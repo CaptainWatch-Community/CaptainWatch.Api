@@ -17,7 +17,7 @@ namespace CaptainWatch.Api.Repository.Db.Movies
 
         public async Task DeleteMovie(int movieId)
         {
-/*            await _dbContext.DeleteMovie;*/
+            await _dbContext.Procedures.DeleteMovieAsync(movieId);
         }
 
         public async Task<IEnumerable<MoviePocBo>> GetMoviesPoc()

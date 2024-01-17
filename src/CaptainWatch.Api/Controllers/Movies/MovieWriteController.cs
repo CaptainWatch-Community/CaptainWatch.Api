@@ -1,6 +1,7 @@
 ﻿using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Models.Movies.Detail;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -32,7 +33,7 @@ namespace CaptainWatch.Api.Controllers.Movies
         public async Task<ActionResult> DeleteMovie(int movieId)
         {
             await _movieServiceWrite.DeleteMovie(movieId);
-            return Ok();
+            return NoContent();
         }
     }
 }

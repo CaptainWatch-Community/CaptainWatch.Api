@@ -18,8 +18,7 @@ namespace CaptainWatch.Api.Services.Movies
         #endregion
         public async Task DeleteMovie(int movieId)
         {
-            /*return await _movieRepo.GetMoviesPoc();*/
-            var lidwine = "Killian";
+            await _movieRepo.DeleteMovie(movieId);
         }
     }
 }
