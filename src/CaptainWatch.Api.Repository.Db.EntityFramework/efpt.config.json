@@ -22,6 +22,10 @@
       {
          "Name": "[dbo].[TV]",
          "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DeleteMovie]",
+         "ObjectType": 1
       }
    ],
    "UiHint": "msi.Top250.dbo",

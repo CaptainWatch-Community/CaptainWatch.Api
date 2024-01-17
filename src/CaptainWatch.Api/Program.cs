@@ -53,6 +53,7 @@ builder.Services.AddSwaggerGen();
 //dependency injection for services
 builder.Services.AddScoped<IMovieServiceRead, MovieServiceRead>();
 builder.Services.AddScoped<ISitemapServiceRead, SitemapServiceRead>();
+builder.Services.AddScoped<IMovieServiceWrite, MovieServiceWrite>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
