@@ -39,6 +39,7 @@ builder.Services.AddSwaggerGen(options =>
             new string[] {}
         }
     });
+    options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
 });
 
 // Add services to the container.
