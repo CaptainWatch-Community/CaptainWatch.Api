@@ -28,8 +28,12 @@ namespace CaptainWatch.Api.Repository.Db.Movies
 
         public async Task<IEnumerable<MovieBo>> GetMoviesWithPositiveSiteScore()
         {
-            var movies = await _dbContext.Movie.Where(_ => _.SiteScore > 0).ToListAsync();
-            return movies.ToBo();
+            var movies = await _dbContext.Movie.Where(_ => _.SiteScore > 0).Select(_ => new MovieBo
+            {
+                Id = _.Id,
+                Title = _.Title
+            }).ToListAsync();
+            return movies;
         }
     }
 }

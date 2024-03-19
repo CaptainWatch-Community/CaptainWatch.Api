@@ -1,7 +1,6 @@
 ﻿using CaptainWatch.Api.Domain.Bo.Series.Result;
 using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
-using CaptainWatch.Api.Repository.Db.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CaptainWatch.Api.Repository.Db.Series
@@ -17,8 +16,12 @@ namespace CaptainWatch.Api.Repository.Db.Series
 
         public async Task<IEnumerable<SerieBo>> GetSeriesWithPositiveSiteScore()
         {
-            var series = await _dbContext.Tv.Where(_ => _.SiteScore > 0).ToListAsync();
-            return series.ToBo();
+            var series = await _dbContext.Tv.Where(_ => _.SiteScore > 0).Select(_ => new SerieBo
+            {
+                Id = _.Id,
+                Title = _.Name
+            }).ToListAsync();
+            return series;
         }
     }
 }

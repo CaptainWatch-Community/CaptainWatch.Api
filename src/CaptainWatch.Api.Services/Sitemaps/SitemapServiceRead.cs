@@ -25,7 +25,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
 
             var result = movies.Select(movie => new MovieSitemapBo
             {
-                Title = movie.Title ?? movie.OriginalTitle,
+                Title = movie.Title,
                 Id = movie.Id
             }).ToList();
 
@@ -38,7 +38,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
 
             var result = series.Select(serie => new SerieSitemapBo
             {
-                Title = serie.Title ?? serie.OriginalTitle,
+                Title = serie.Title,
                 Id = serie.Id
             }).ToList();
 
