@@ -17,7 +17,6 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
             {
                 Id = s.Id,
                 Title = s.Name,
-                OriginalTitle = s.OriginalName,
             };
         }
     }

@@ -30,7 +30,6 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
             {
                 Id = s.Id,
                 Title = s.Title,
-                OriginalTitle = s.OriginalTitle,
             };
         }
     }
