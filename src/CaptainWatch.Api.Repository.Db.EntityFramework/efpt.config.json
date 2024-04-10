@@ -2,7 +2,6 @@
    "CodeGenerationMode": 3,
    "ContextClassName": "CaptainWatchContext",
    "ContextNamespace": null,
-   "DefaultDacpacSchema": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
    "ModelNamespace": null,
@@ -16,6 +15,10 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[dbo].[List]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Movie]",
          "ObjectType": 0
       },
@@ -28,7 +31,7 @@
          "ObjectType": 1
       }
    ],
-   "UiHint": "msi.Top250.dbo",
+   "UiHint": null,
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
@@ -46,6 +49,7 @@
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
    "UseSchemaFolders": false,
    "UseSchemaNamespaces": false,
    "UseSpatial": false,
