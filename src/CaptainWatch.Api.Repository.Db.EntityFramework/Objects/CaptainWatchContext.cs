@@ -13,12 +13,55 @@ public partial class CaptainWatchContext : DbContext
     {
     }
 
+    public virtual DbSet<List> List { get; set; }
+
     public virtual DbSet<Movie> Movie { get; set; }
 
     public virtual DbSet<Tv> Tv { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<List>(entity =>
+        {
+            entity.HasIndex(e => e.CreatorUserId, "CL_List_Creator");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BackgroundElementId).HasColumnName("background_element_id");
+            entity.Property(e => e.BackgroundElementType)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("background_element_type");
+            entity.Property(e => e.CreatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("created_date");
+            entity.Property(e => e.CreatorUserId).HasColumnName("creator_user_id");
+            entity.Property(e => e.IsPrivate).HasColumnName("is_private");
+            entity.Property(e => e.IsRanked).HasColumnName("is_ranked");
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(500)
+                .HasColumnName("name");
+            entity.Property(e => e.TechId)
+                .HasMaxLength(50)
+                .HasColumnName("tech_id");
+            entity.Property(e => e.TechName)
+                .HasMaxLength(255)
+                .HasColumnName("tech_name");
+            entity.Property(e => e.TechType)
+                .HasMaxLength(50)
+                .HasColumnName("tech_type");
+            entity.Property(e => e.TechValue)
+                .HasMaxLength(1000)
+                .HasColumnName("tech_value");
+            entity.Property(e => e.UpdatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("updated_date");
+            entity.Property(e => e.Views).HasColumnName("views");
+            entity.Property(e => e.ViewsPublic).HasColumnName("views_public");
+            entity.Property(e => e.Votes).HasColumnName("votes");
+        });
+
         modelBuilder.Entity<Movie>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_Movies");
