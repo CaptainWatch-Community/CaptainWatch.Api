@@ -6,5 +6,6 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
     {
         Task<IEnumerable<MovieSitemapBo>> GetMovieSitemapData();
         Task<IEnumerable<SerieSitemapBo>> GetSerieSitemapData();
+        Task<IEnumerable<ListSitemapBo>> GetListSitemapData();
     }
 }

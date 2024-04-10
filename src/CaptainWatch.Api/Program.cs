@@ -2,6 +2,7 @@ using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Middlewares;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
+using CaptainWatch.Api.Repository.Db.Lists;
 using CaptainWatch.Api.Repository.Db.Movies;
 using CaptainWatch.Api.Repository.Db.Series;
 using CaptainWatch.Api.Services.Movies;
@@ -40,7 +41,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.3" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.4" });
 });
 
 // Add services to the container.
@@ -60,6 +61,7 @@ builder.Services.AddScoped<IMovieServiceWrite, MovieServiceWrite>();
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
 builder.Services.AddScoped<ISerieRepo, SerieRepo>();
+builder.Services.AddScoped<IListRepo, ListRepo>();
 
 //dependency injection for db context
 builder.Services.AddDbContext<CaptainWatchContext>(
