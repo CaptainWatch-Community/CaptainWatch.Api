@@ -16,7 +16,7 @@ namespace CaptainWatch.Api.Repository.Db.Lists
 
         public async Task<IEnumerable<SitemapListBo>> GetLists()
         {
-            var lists = await _dbContext.Tv.Where(_ => _.SiteScore > 0).Select(_ => new SitemapListBo
+            var lists = await _dbContext.List.Select(_ => new SitemapListBo
             {
                 Id = _.Id,
                 Name = _.Name
