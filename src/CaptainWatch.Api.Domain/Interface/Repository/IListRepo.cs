@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Sitemaps.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Sitemaps.Detail;
 
 namespace CaptainWatch.Api.Domain.Interface.Repository
 {

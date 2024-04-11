@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
 using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 

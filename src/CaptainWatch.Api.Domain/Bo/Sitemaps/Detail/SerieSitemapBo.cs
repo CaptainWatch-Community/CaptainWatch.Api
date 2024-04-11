@@ -1,4 +1,4 @@
-﻿namespace CaptainWatch.Api.Domain.Bo.Sitemaps.Result
+﻿namespace CaptainWatch.Api.Domain.Bo.Sitemaps.Detail
 {
     public class SerieSitemapBo
     {

@@ -1,4 +1,4 @@
-﻿namespace CaptainWatch.Api.Domain.Bo.Series.Result
+﻿namespace CaptainWatch.Api.Domain.Bo.Series.Detail
 {
     public class SerieBo
     {

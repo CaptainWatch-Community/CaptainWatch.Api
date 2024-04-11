@@ -1,4 +1,4 @@
-using CaptainWatch.Api.Domain.Bo.Sitemaps.Result;
+using CaptainWatch.Api.Domain.Bo.Sitemaps.Detail;
 using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 

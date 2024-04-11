@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
 
 namespace CaptainWatch.Api.Models.Movies.Detail
 {

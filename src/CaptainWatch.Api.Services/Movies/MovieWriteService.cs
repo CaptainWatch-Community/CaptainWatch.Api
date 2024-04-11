@@ -1,5 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Result;
-using CaptainWatch.Api.Domain.Interface.Buisiness;
+﻿using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 
 namespace CaptainWatch.Api.Services.Movies
