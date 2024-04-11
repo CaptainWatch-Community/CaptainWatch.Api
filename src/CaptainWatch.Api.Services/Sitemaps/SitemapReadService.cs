@@ -21,7 +21,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
 
         #endregion
 
-        public async Task<IEnumerable<MovieSitemapBo>> GetMovieSitemapData()
+        public async Task<IEnumerable<MovieSitemapBo>> GetMovies()
         {
             var movies = await _movieRepo.GetMoviesWithPositiveSiteScore();
 
@@ -34,7 +34,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
             return result;
         }
 
-        public async Task<IEnumerable<SerieSitemapBo>> GetSerieSitemapData()
+        public async Task<IEnumerable<SerieSitemapBo>> GetSeries()
         {
             var series = await _serieRepo.GetSeriesWithPositiveSiteScore();
 
@@ -47,7 +47,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
             return result;
         }
 
-        public async Task<IEnumerable<ListSitemapBo>> GetListSitemapData()
+        public async Task<IEnumerable<ListSitemapBo>> GetLists()
         {
             var lists = await _listRepo.GetLists();
 

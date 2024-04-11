@@ -22,12 +22,11 @@ namespace CaptainWatch.Api.Controllers.Movies
         #endregion
 
         [HttpDelete("{movieId}")]
-        [ActionName("DeleteMovie")]
         [SwaggerOperation(Summary = "Delete movie", Tags = new[] { "Movie" })]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult> DeleteMovie(int movieId)
+        public async Task<ActionResult> Delete(int movieId)
         {
-            await _movieServiceWrite.DeleteMovie(movieId);
+            await _movieServiceWrite.Delete(movieId);
             return NoContent();
         }
     }

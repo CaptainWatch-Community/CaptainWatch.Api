@@ -4,6 +4,6 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
 {
     public interface IMovieReadService
     {
-        Task<IEnumerable<MoviePocBo>> GetMoviesPoc();
+        Task<IEnumerable<MoviePocBo>> GetPoc();
     }
 }

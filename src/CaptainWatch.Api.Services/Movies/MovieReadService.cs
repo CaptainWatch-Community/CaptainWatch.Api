@@ -16,7 +16,7 @@ namespace CaptainWatch.Api.Services.Movies
         }
 
         #endregion
-        public async Task<IEnumerable<MoviePocBo>> GetMoviesPoc()
+        public async Task<IEnumerable<MoviePocBo>> GetPoc()
         {
             return await _movieRepo.GetMoviesPoc();
         }

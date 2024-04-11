@@ -24,32 +24,29 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
         #endregion
 
         [HttpGet("movies")]
-        [ActionName("GetMovieSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for movies", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SitemapMovieDto))]
-        public async Task<ActionResult<IEnumerable<SitemapMovieDto>>> GetMovieSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapMovieDto>>> GetMovies()
         {
-            var movies = await _sitemapServiceRead.GetMovieSitemapData();
+            var movies = await _sitemapServiceRead.GetMovies();
             return Ok(movies.ToDto());
         }
 
         [HttpGet("series")]
-        [ActionName("GetSerieSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for series", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SitemapSerieDto))]
-        public async Task<ActionResult<IEnumerable<SitemapSerieDto>>> GetSerieSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapSerieDto>>> GetSeries()
         {
-            var series = await _sitemapServiceRead.GetSerieSitemapData();
+            var series = await _sitemapServiceRead.GetSeries();
             return Ok(series.ToDto());
         }
 
         [HttpGet("lists")]
-        [ActionName("GetListSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for lists", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SitemapListDto))]
-        public async Task<ActionResult<IEnumerable<SitemapListDto>>> GetListSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapListDto>>> GetLists()
         {
-            var lists = await _sitemapServiceRead.GetListSitemapData();
+            var lists = await _sitemapServiceRead.GetLists();
             return Ok(lists.ToDto());
         }
     }

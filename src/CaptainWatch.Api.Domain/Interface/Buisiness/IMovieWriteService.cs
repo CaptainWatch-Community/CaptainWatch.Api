@@ -4,6 +4,6 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
 {
     public interface IMovieWriteService
     {
-        Task DeleteMovie(int movieId);
+        Task Delete(int movieId);
     }
 }

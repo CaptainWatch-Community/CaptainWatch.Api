@@ -23,12 +23,11 @@ namespace CaptainWatch.Api.Controllers.Movies
         #endregion
 
         [HttpGet("poc")]
-        [ActionName("GetMoviesPoc")]
-        [SwaggerOperation(Summary = "Get all movies poc", Tags = new[] { "Movie" })]
+        [SwaggerOperation(Summary = "Poc api to get 10 movies", Tags = new[] { "Movie" })]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MoviePocDto))]
-        public async Task<ActionResult<IEnumerable<MoviePocDto>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<MoviePocDto>>> GetPoc()
         {
-            var movies = await _movieServiceRead.GetMoviesPoc();
+            var movies = await _movieServiceRead.GetPoc();
             return Ok(movies.ToDto());
         }
     }
