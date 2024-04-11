@@ -4,6 +4,6 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
 {
     public interface IListRepo
     {
-        Task<IEnumerable<ListSitemapBo>> GetLists();
+        Task<IEnumerable<SitemapListBo>> GetLists();
     }
 }

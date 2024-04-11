@@ -11,7 +11,7 @@ namespace CaptainWatch.Api.Models.Sitemaps.Detail
     #region Extensions
     public static class SitemapMovieExtensions
     {
-        public static SitemapMovieDto ToDto(this MovieSitemapBo movie)
+        public static SitemapMovieDto ToDto(this SitemapMovieBo movie)
         {
             return new SitemapMovieDto
             {
@@ -20,7 +20,7 @@ namespace CaptainWatch.Api.Models.Sitemaps.Detail
             };
         }
 
-        public static IEnumerable<SitemapMovieDto> ToDto(this IEnumerable<MovieSitemapBo> movies)
+        public static IEnumerable<SitemapMovieDto> ToDto(this IEnumerable<SitemapMovieBo> movies)
         {
             return movies.Select(movie => movie.ToDto());
         }

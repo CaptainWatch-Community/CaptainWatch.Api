@@ -11,7 +11,7 @@ namespace CaptainWatch.Api.Models.Sitemaps.Detail
     #region Extensions
     public static class SitemapListExtensions
     {
-        public static SitemapListDto ToDto(this ListSitemapBo list)
+        public static SitemapListDto ToDto(this SitemapListBo list)
         {
             return new SitemapListDto
             {
@@ -20,7 +20,7 @@ namespace CaptainWatch.Api.Models.Sitemaps.Detail
             };
         }
 
-        public static IEnumerable<SitemapListDto> ToDto(this IEnumerable<ListSitemapBo> lists)
+        public static IEnumerable<SitemapListDto> ToDto(this IEnumerable<SitemapListBo> lists)
         {
             return lists.Select(list => list.ToDto());
         }

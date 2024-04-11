@@ -4,8 +4,8 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
 {
     public interface ISitemapReadService
     {
-        Task<IEnumerable<MovieSitemapBo>> GetMovies();
-        Task<IEnumerable<SerieSitemapBo>> GetSeries();
-        Task<IEnumerable<ListSitemapBo>> GetLists();
+        Task<IEnumerable<SitemapMovieBo>> GetMovies();
+        Task<IEnumerable<SitemapSerieBo>> GetSeries();
+        Task<IEnumerable<SitemapListBo>> GetLists();
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace CaptainWatch.Api.Domain.Bo.Sitemaps.Detail
 {
-    public class SerieSitemapBo
+    public class SitemapListBo
     {
         public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }
