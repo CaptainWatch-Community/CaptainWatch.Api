@@ -4,7 +4,7 @@ using CaptainWatch.Api.Domain.Interface.Repository;
 
 namespace CaptainWatch.Api.Services.Sitemaps
 {
-    public class SitemapServiceRead : ISitemapServiceRead
+    public class SitemapReadService : ISitemapReadService
     {
         #region Declarations
 
@@ -12,7 +12,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
         private readonly ISerieRepo _serieRepo;
         private readonly IListRepo _listRepo;
 
-        public SitemapServiceRead(IMovieRepo movieRepo, ISerieRepo serieRepo, IListRepo listRepo)
+        public SitemapReadService(IMovieRepo movieRepo, ISerieRepo serieRepo, IListRepo listRepo)
         {
             _movieRepo = movieRepo;
             _serieRepo = serieRepo;

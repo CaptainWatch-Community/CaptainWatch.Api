@@ -13,9 +13,9 @@ namespace CaptainWatch.Api.Controllers.Movies
     {
         #region Declarations
 
-        private readonly IMovieServiceRead _movieServiceRead;
+        private readonly IMovieReadService _movieServiceRead;
 
-        public MoviesReadController(IMovieServiceRead movieServiceRead)
+        public MoviesReadController(IMovieReadService movieServiceRead)
         {
             _movieServiceRead = movieServiceRead;
         }

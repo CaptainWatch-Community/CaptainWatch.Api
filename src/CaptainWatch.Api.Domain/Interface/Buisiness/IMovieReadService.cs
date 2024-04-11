@@ -2,8 +2,8 @@
 
 namespace CaptainWatch.Api.Domain.Interface.Buisiness
 {
-    public interface IMovieServiceWrite
+    public interface IMovieReadService
     {
-        Task DeleteMovie(int movieId);
+        Task<IEnumerable<MoviePocBo>> GetMoviesPoc();
     }
 }

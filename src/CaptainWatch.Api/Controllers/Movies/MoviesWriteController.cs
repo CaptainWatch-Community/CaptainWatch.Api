@@ -12,9 +12,9 @@ namespace CaptainWatch.Api.Controllers.Movies
     {
         #region Declarations
 
-        private readonly IMovieServiceWrite _movieServiceWrite;
+        private readonly IMovieWriteService _movieServiceWrite;
 
-        public MoviesWriteController(IMovieServiceWrite movieServiceWrite)
+        public MoviesWriteController(IMovieWriteService movieServiceWrite)
         {
             _movieServiceWrite = movieServiceWrite;
         }

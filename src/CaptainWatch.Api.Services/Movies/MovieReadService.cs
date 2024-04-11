@@ -4,21 +4,21 @@ using CaptainWatch.Api.Domain.Interface.Repository;
 
 namespace CaptainWatch.Api.Services.Movies
 {
-    public class MovieServiceWrite : IMovieServiceWrite
+    public class MovieReadService : IMovieReadService
     {
         #region Declarations
 
         private readonly IMovieRepo _movieRepo;
 
-        public MovieServiceWrite(IMovieRepo movieRepo)
+        public MovieReadService(IMovieRepo movieRepo)
         {
             _movieRepo = movieRepo;
         }
 
         #endregion
-        public async Task DeleteMovie(int movieId)
+        public async Task<IEnumerable<MoviePocBo>> GetMoviesPoc()
         {
-            await _movieRepo.DeleteMovie(movieId);
+            return await _movieRepo.GetMoviesPoc();
         }
     }
 }

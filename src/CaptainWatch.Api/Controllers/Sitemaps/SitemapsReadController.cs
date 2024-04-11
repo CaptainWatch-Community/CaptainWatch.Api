@@ -13,10 +13,10 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
     {
         #region Declarations
 
-        private readonly ISitemapServiceRead _sitemapServiceRead;
+        private readonly ISitemapReadService _sitemapServiceRead;
 
 
-        public SitemapsReadController(ISitemapServiceRead sitemapServiceRead)
+        public SitemapsReadController(ISitemapReadService sitemapServiceRead)
         {
             _sitemapServiceRead = sitemapServiceRead;
         }
