@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Series.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Series.Detail;
 using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using Microsoft.EntityFrameworkCore;

@@ -1,24 +1,24 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
 using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 
 namespace CaptainWatch.Api.Services.Movies
 {
-    public class MovieServiceWrite : IMovieServiceWrite
+    public class MovieReadService : IMovieReadService
     {
         #region Declarations
 
         private readonly IMovieRepo _movieRepo;
 
-        public MovieServiceWrite(IMovieRepo movieRepo)
+        public MovieReadService(IMovieRepo movieRepo)
         {
             _movieRepo = movieRepo;
         }
 
         #endregion
-        public async Task DeleteMovie(int movieId)
+        public async Task<IEnumerable<MoviePocBo>> GetPoc()
         {
-            await _movieRepo.DeleteMovie(movieId);
+            return await _movieRepo.GetMoviesPoc();
         }
     }
 }

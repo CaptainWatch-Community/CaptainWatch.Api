@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Series.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Series.Detail;
 
 namespace CaptainWatch.Api.Domain.Interface.Repository
 {

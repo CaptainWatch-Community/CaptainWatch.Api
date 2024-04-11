@@ -1,4 +1,4 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 
 namespace CaptainWatch.Api.Repository.Db.Extensions

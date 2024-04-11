@@ -1,10 +1,10 @@
-using CaptainWatch.Api.Domain.Bo.Sitemaps.Result;
+using CaptainWatch.Api.Domain.Bo.Sitemaps.Detail;
 using CaptainWatch.Api.Domain.Interface.Buisiness;
 using CaptainWatch.Api.Domain.Interface.Repository;
 
 namespace CaptainWatch.Api.Services.Sitemaps
 {
-    public class SitemapServiceRead : ISitemapServiceRead
+    public class SitemapReadService : ISitemapReadService
     {
         #region Declarations
 
@@ -12,7 +12,7 @@ namespace CaptainWatch.Api.Services.Sitemaps
         private readonly ISerieRepo _serieRepo;
         private readonly IListRepo _listRepo;
 
-        public SitemapServiceRead(IMovieRepo movieRepo, ISerieRepo serieRepo, IListRepo listRepo)
+        public SitemapReadService(IMovieRepo movieRepo, ISerieRepo serieRepo, IListRepo listRepo)
         {
             _movieRepo = movieRepo;
             _serieRepo = serieRepo;
@@ -21,11 +21,11 @@ namespace CaptainWatch.Api.Services.Sitemaps
 
         #endregion
 
-        public async Task<IEnumerable<MovieSitemapBo>> GetMovieSitemapData()
+        public async Task<IEnumerable<SitemapMovieBo>> GetMovies()
         {
             var movies = await _movieRepo.GetMoviesWithPositiveSiteScore();
 
-            var result = movies.Select(movie => new MovieSitemapBo
+            var result = movies.Select(movie => new SitemapMovieBo
             {
                 Title = movie.Title,
                 Id = movie.Id
@@ -34,11 +34,11 @@ namespace CaptainWatch.Api.Services.Sitemaps
             return result;
         }
 
-        public async Task<IEnumerable<SerieSitemapBo>> GetSerieSitemapData()
+        public async Task<IEnumerable<SitemapSerieBo>> GetSeries()
         {
             var series = await _serieRepo.GetSeriesWithPositiveSiteScore();
 
-            var result = series.Select(serie => new SerieSitemapBo
+            var result = series.Select(serie => new SitemapSerieBo
             {
                 Title = serie.Title,
                 Id = serie.Id
@@ -47,11 +47,11 @@ namespace CaptainWatch.Api.Services.Sitemaps
             return result;
         }
 
-        public async Task<IEnumerable<ListSitemapBo>> GetListSitemapData()
+        public async Task<IEnumerable<SitemapListBo>> GetLists()
         {
             var lists = await _listRepo.GetLists();
 
-            var result = lists.Select(list => new ListSitemapBo
+            var result = lists.Select(list => new SitemapListBo
             {
                 Id = list.Id,
                 Name = list.Name

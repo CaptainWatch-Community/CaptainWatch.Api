@@ -1,9 +1,9 @@
-﻿using CaptainWatch.Api.Domain.Bo.Sitemaps.Result;
+﻿using CaptainWatch.Api.Domain.Bo.Sitemaps.Detail;
 
 namespace CaptainWatch.Api.Domain.Interface.Repository
 {
     public interface IListRepo
     {
-        Task<IEnumerable<ListSitemapBo>> GetLists();
+        Task<IEnumerable<SitemapListBo>> GetLists();
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace CaptainWatch.Api.Domain.Bo.Sitemaps.Result
+﻿namespace CaptainWatch.Api.Domain.Bo.Sitemaps.Detail
 {
-    public class ListSitemapBo
+    public class SitemapListBo
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
