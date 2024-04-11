@@ -2,26 +2,28 @@
 
 namespace CaptainWatch.Api.Models.Sitemaps.Detail
 {
-    public class SerieSitemapDto
+    public class SitemapSerieDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
     }
 
-    public static class SerieSitemapExtensions
+    #region Extensions
+    public static class SitemapSerieExtensions
     {
-        public static SerieSitemapDto ToDto(this SerieSitemapBo serie)
+        public static SitemapSerieDto ToDto(this SerieSitemapBo serie)
         {
-            return new SerieSitemapDto
+            return new SitemapSerieDto
             {
                 Id = serie.Id,
                 Title = serie.Title
             };
         }
 
-        public static IEnumerable<SerieSitemapDto> ToDto(this IEnumerable<SerieSitemapBo> series)
+        public static IEnumerable<SitemapSerieDto> ToDto(this IEnumerable<SerieSitemapBo> series)
         {
             return series.Select(serie => serie.ToDto());
         }
     }
+    #endregion
 }

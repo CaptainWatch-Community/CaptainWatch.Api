@@ -30,7 +30,7 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
         [ActionName("GetMovieSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for movies", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<MovieSitemapDto>>> GetMovieSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapMovieDto>>> GetMovieSitemapData()
         {
             var movies = await _sitemapServiceRead.GetMovieSitemapData();
             return Ok(movies.ToDto());
@@ -43,7 +43,7 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
         [ActionName("GetSerieSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for series", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<SerieSitemapDto>>> GetSerieSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapSerieDto>>> GetSerieSitemapData()
         {
             var series = await _sitemapServiceRead.GetSerieSitemapData();
             return Ok(series.ToDto());
@@ -56,7 +56,7 @@ namespace CaptainWatch.Api.Controllers.Sitemaps
         [ActionName("GetListSitemapData")]
         [SwaggerOperation(Summary = "Get data to generate a sitemap for lists", Tags = new[] { "Sitemap" })]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IEnumerable<ListSitemapDto>>> GetListSitemapData()
+        public async Task<ActionResult<IEnumerable<SitemapListDto>>> GetListSitemapData()
         {
             var lists = await _sitemapServiceRead.GetListSitemapData();
             return Ok(lists.ToDto());
