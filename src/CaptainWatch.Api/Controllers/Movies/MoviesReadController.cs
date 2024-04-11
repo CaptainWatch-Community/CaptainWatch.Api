@@ -24,7 +24,7 @@ namespace CaptainWatch.Api.Controllers.Movies
 
         [HttpGet("poc")]
         [SwaggerOperation(Summary = "Poc api to get 10 movies", Tags = new[] { "Movie" })]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(MoviePocDto))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<MoviePocDto>))]
         public async Task<ActionResult<IEnumerable<MoviePocDto>>> GetPoc()
         {
             var movies = await _movieServiceRead.GetPoc();
