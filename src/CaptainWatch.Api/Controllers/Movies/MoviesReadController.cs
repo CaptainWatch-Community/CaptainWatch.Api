@@ -6,16 +6,16 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace CaptainWatch.Api.Controllers.Movies
 {
-    [Route("api/movie")]
+    [Route("api/movies")]
     [ApiController]
     [Authorize]
-    public class MovieReadController : ControllerBase
+    public class MoviesReadController : ControllerBase
     {
         #region Declarations
 
         private readonly IMovieServiceRead _movieServiceRead;
 
-        public MovieReadController(IMovieServiceRead movieServiceRead)
+        public MoviesReadController(IMovieServiceRead movieServiceRead)
         {
             _movieServiceRead = movieServiceRead;
         }

@@ -1,22 +1,20 @@
 ﻿using CaptainWatch.Api.Domain.Interface.Buisiness;
-using CaptainWatch.Api.Models.Movies.Detail;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace CaptainWatch.Api.Controllers.Movies
 {
-    [Route("api/movie")]
+    [Route("api/movies")]
     [ApiController]
     [Authorize]
-    public class MovieWriteController : ControllerBase
+    public class MoviesWriteController : ControllerBase
     {
         #region Declarations
 
         private readonly IMovieServiceWrite _movieServiceWrite;
 
-        public MovieWriteController(IMovieServiceWrite movieServiceWrite)
+        public MoviesWriteController(IMovieServiceWrite movieServiceWrite)
         {
             _movieServiceWrite = movieServiceWrite;
         }

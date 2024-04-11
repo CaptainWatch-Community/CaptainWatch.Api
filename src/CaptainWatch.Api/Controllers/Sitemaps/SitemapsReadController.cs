@@ -6,17 +6,17 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace CaptainWatch.Api.Controllers.Sitemaps
 {
-    [Route("api/sitemap")]
+    [Route("api/sitemaps")]
     [ApiController]
     [Authorize]
-    public class SitemapReadController : ControllerBase
+    public class SitemapsReadController : ControllerBase
     {
         #region Declarations
 
         private readonly ISitemapServiceRead _sitemapServiceRead;
 
 
-        public SitemapReadController(ISitemapServiceRead sitemapServiceRead)
+        public SitemapsReadController(ISitemapServiceRead sitemapServiceRead)
         {
             _sitemapServiceRead = sitemapServiceRead;
         }
