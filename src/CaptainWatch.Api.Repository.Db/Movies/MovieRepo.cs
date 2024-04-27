@@ -35,5 +35,16 @@ namespace CaptainWatch.Api.Repository.Db.Movies
             }).ToListAsync();
             return movies;
         }
+
+        public async Task<IEnumerable<MovieBo>> GetAllMoviesForSearch()
+        {
+            var movies = await _dbContext.Movie.Select(_ => new MovieBo
+            {
+                Id = _.Id,
+                Title = _.Title,
+                OriginalTitle = _.OriginalTitle
+            }).ToListAsync();
+            return movies;
+        }
     }
 }

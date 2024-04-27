@@ -5,27 +5,32 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{48F9817E-CA75-48BE-849C-9F927557C956}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api.Domain", "CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj", "{9E3BDBB9-0825-4B21-89C2-92BAB1C97C76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptainWatch.Api.Domain", "CaptainWatch.Api.Domain\CaptainWatch.Api.Domain.csproj", "{9E3BDBB9-0825-4B21-89C2-92BAB1C97C76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api.Services", "CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj", "{B7FBF7CA-02B1-4940-B8F6-45890E35FFA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptainWatch.Api.Services", "CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj", "{B7FBF7CA-02B1-4940-B8F6-45890E35FFA9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9E3BDBB9-0825-4B21-89C2-92BAB1C97C76} = {9E3BDBB9-0825-4B21-89C2-92BAB1C97C76}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A2D14F43-8829-4665-80EA-63E1F146D2AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api.Repository.Db", "CaptainWatch.Api.Repository.Db\CaptainWatch.Api.Repository.Db.csproj", "{6752B866-55E4-4AC9-8E11-0E218B0306DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptainWatch.Api.Repository.Db", "CaptainWatch.Api.Repository.Db\CaptainWatch.Api.Repository.Db.csproj", "{6752B866-55E4-4AC9-8E11-0E218B0306DB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{346A45F7-50ED-4CE1-A037-2DE71C69ED45} = {346A45F7-50ED-4CE1-A037-2DE71C69ED45}
 		{9E3BDBB9-0825-4B21-89C2-92BAB1C97C76} = {9E3BDBB9-0825-4B21-89C2-92BAB1C97C76}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api.Repository.Db.EntityFramework", "CaptainWatch.Api.Repository.Db.EntityFramework\CaptainWatch.Api.Repository.Db.EntityFramework.csproj", "{346A45F7-50ED-4CE1-A037-2DE71C69ED45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptainWatch.Api.Repository.Db.EntityFramework", "CaptainWatch.Api.Repository.Db.EntityFramework\CaptainWatch.Api.Repository.Db.EntityFramework.csproj", "{346A45F7-50ED-4CE1-A037-2DE71C69ED45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api", "CaptainWatch.Api\CaptainWatch.Api.csproj", "{7E0C7AE5-292C-4B08-8F41-C9E6376729C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CaptainWatch.Api", "CaptainWatch.Api\CaptainWatch.Api.csproj", "{7E0C7AE5-292C-4B08-8F41-C9E6376729C3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6752B866-55E4-4AC9-8E11-0E218B0306DB} = {6752B866-55E4-4AC9-8E11-0E218B0306DB}
 		{B7FBF7CA-02B1-4940-B8F6-45890E35FFA9} = {B7FBF7CA-02B1-4940-B8F6-45890E35FFA9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptainWatch.Api.Repository.Meilisearch", "CaptainWatch.Api.Repository.Meilisearch\CaptainWatch.Api.Repository.Meilisearch.csproj", "{5BC640D7-68B2-46D5-8EC7-B997C968D95A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E3BDBB9-0825-4B21-89C2-92BAB1C97C76} = {9E3BDBB9-0825-4B21-89C2-92BAB1C97C76}
 	EndProjectSection
 EndProject
 Global
@@ -54,6 +59,10 @@ Global
 		{7E0C7AE5-292C-4B08-8F41-C9E6376729C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E0C7AE5-292C-4B08-8F41-C9E6376729C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E0C7AE5-292C-4B08-8F41-C9E6376729C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BC640D7-68B2-46D5-8EC7-B997C968D95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BC640D7-68B2-46D5-8EC7-B997C968D95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BC640D7-68B2-46D5-8EC7-B997C968D95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BC640D7-68B2-46D5-8EC7-B997C968D95A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +72,7 @@ Global
 		{B7FBF7CA-02B1-4940-B8F6-45890E35FFA9} = {48F9817E-CA75-48BE-849C-9F927557C956}
 		{6752B866-55E4-4AC9-8E11-0E218B0306DB} = {A2D14F43-8829-4665-80EA-63E1F146D2AB}
 		{346A45F7-50ED-4CE1-A037-2DE71C69ED45} = {A2D14F43-8829-4665-80EA-63E1F146D2AB}
+		{5BC640D7-68B2-46D5-8EC7-B997C968D95A} = {A2D14F43-8829-4665-80EA-63E1F146D2AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {168818FB-5C1F-44DF-B5DF-B37D78AF5C01}
