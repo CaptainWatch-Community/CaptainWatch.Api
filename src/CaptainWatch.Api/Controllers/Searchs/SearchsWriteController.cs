@@ -36,7 +36,7 @@ namespace CaptainWatch.Api.Controllers.Movies
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> AddOrUpdateMovie(int movieId, [FromBody] SearchMovieAddOrUpdateDto movie)
         {
-            await Task.Delay(1000);
+            await _searchWriteService.AddOrUpdateMovie(movieId, movie.ToBo());
             return NoContent();
         }
 
@@ -45,7 +45,16 @@ namespace CaptainWatch.Api.Controllers.Movies
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> DeleteMovie(int movieId)
         {
-            await Task.Delay(1000);
+            await _searchWriteService.DeleteMovie(movieId);
+            return NoContent();
+        }
+
+        [HttpDelete("movies")]
+        [SwaggerOperation(Summary = "Delete all movies from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteAllMovies()
+        {
+            await _searchWriteService.DeleteAllMovies();
             return NoContent();
         }
     }

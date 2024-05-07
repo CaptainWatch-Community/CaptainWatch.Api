@@ -1,7 +1,12 @@
-﻿namespace CaptainWatch.Api.Domain.Interface.Buisiness
+﻿using CaptainWatch.Api.Domain.Bo.Searchs.Request;
+
+namespace CaptainWatch.Api.Domain.Interface.Buisiness
 {
     public interface ISearchWriteService
     {
         Task ImportAllMovies();
+        Task AddOrUpdateMovie(int movieId, SearchMovieAddOrUpdateBo movie);
+        Task DeleteMovie(int movieId);
+        Task DeleteAllMovies();
     }
 }
