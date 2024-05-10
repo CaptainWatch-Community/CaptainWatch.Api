@@ -1,6 +1,6 @@
-﻿namespace CaptainWatch.Api.Domain.Bo.Searchs.Request
+﻿namespace CaptainWatch.Api.Domain.Bo.Searchs.Detail
 {
-    public class SearchMovieAddOrUpdateBo
+    public class SearchMovieBo
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;

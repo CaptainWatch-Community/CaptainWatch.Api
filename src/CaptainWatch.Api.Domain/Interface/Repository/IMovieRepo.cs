@@ -1,4 +1,5 @@
 ﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
+using CaptainWatch.Api.Domain.Bo.Searchs.Request;
 
 namespace CaptainWatch.Api.Domain.Interface.Repository
 {
@@ -7,6 +8,6 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
         Task<IEnumerable<MoviePocBo>> GetMoviesPoc();
         Task<IEnumerable<MovieBo>> GetMoviesWithPositiveSiteScore();
         Task DeleteMovie(int movieId);
-        Task<IEnumerable<MovieBo>> GetAllMoviesForSearch();
+        Task<IEnumerable<SearchMovieAddOrUpdateBo>> GetAllMoviesForSearch();
     }
 }

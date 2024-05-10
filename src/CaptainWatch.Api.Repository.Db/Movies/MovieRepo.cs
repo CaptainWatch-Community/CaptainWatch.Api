@@ -1,4 +1,5 @@
 ﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
+using CaptainWatch.Api.Domain.Bo.Searchs.Request;
 using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using CaptainWatch.Api.Repository.Db.Extensions;
@@ -36,15 +37,11 @@ namespace CaptainWatch.Api.Repository.Db.Movies
             return movies;
         }
 
-        public async Task<IEnumerable<MovieBo>> GetAllMoviesForSearch()
+        public async Task<IEnumerable<SearchMovieAddOrUpdateBo>> GetAllMoviesForSearch()
         {
-            var movies = await _dbContext.Movie.Select(_ => new MovieBo
-            {
-                Id = _.Id,
-                Title = _.Title,
-                OriginalTitle = _.OriginalTitle
-            }).ToListAsync();
+            var movies = await _dbContext.Movie.Select(MovieExtensions.ProjectionToSearchMovieAddOrUpdateBo).ToListAsync();
             return movies;
         }
+
     }
 }

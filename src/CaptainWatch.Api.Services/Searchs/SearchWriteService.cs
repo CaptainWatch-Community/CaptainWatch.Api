@@ -16,6 +16,7 @@ namespace CaptainWatch.Api.Services.Movies
             _movieRepo = movieRepo;
             _searchRepo = searchRepo;
         }
+        #endregion
 
         public async Task DeleteAllMovies()
         {
@@ -27,16 +28,15 @@ namespace CaptainWatch.Api.Services.Movies
             await _searchRepo.DeleteMovieDocument(movieId);
         }
 
-        #endregion
         public async Task ImportAllMovies()
         {
             var movies = await _movieRepo.GetAllMoviesForSearch();
             await _searchRepo.AddMoviesDocuments(movies);
         }
 
-        public async Task AddOrUpdateMovie(int movieId, SearchMovieAddOrUpdateBo movie)
+        public async Task AddOrUpdateMovie( SearchMovieAddOrUpdateBo movie)
         {
-            await _searchRepo.AddOrUpdateMovieDocument(movieId, movie);
+            await _searchRepo.AddOrUpdateMovieDocument(movie);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace CaptainWatch.Api.Models.Searchs.Request
     {
         public string Title { get; set; } = string.Empty;
         public string OriginalTitle { get; set; } = string.Empty;
+        public DateTime? MinReleaseDate { get; set; }
     }
 
     public static class SearchMovieAddOrUpdateExtensions
@@ -15,7 +16,8 @@ namespace CaptainWatch.Api.Models.Searchs.Request
             return new SearchMovieAddOrUpdateBo
             {
                 Title = movie.Title,
-                OriginalTitle = movie.OriginalTitle
+                OriginalTitle = movie.OriginalTitle,
+                MinReleaseDate = movie.MinReleaseDate
             };
         }
     }

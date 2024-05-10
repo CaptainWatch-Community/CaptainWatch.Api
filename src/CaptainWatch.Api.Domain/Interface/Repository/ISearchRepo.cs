@@ -5,9 +5,9 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
 {
     public interface ISearchRepo
     {
-        Task AddMoviesDocuments(IEnumerable<MovieBo> movies);
+        Task AddMoviesDocuments(IEnumerable<SearchMovieAddOrUpdateBo> movies);
         Task DeleteMovieDocument(int movieId);
-        Task AddOrUpdateMovieDocument(int movieId, SearchMovieAddOrUpdateBo movie);
+        Task AddOrUpdateMovieDocument(SearchMovieAddOrUpdateBo movie);
         Task DeleteAllMoviesDocuments();
     }
 }

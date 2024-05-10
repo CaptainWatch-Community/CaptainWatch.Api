@@ -31,14 +31,18 @@ namespace CaptainWatch.Api.Controllers.Movies
             return NoContent();
         }
 
+
         [HttpPut("movies/{movieId}")]
         [SwaggerOperation(Summary = "Add or Update a movie in the search engine", Tags = new[] { "Search" })]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> AddOrUpdateMovie(int movieId, [FromBody] SearchMovieAddOrUpdateDto movie)
         {
-            await _searchWriteService.AddOrUpdateMovie(movieId, movie.ToBo());
+            var movieBo = movie.ToBo();
+            movieBo.Id = movieId;
+            await _searchWriteService.AddOrUpdateMovie(movieBo);
             return NoContent();
         }
+
 
         [HttpDelete("movies/{movieId}")]
         [SwaggerOperation(Summary = "Delete a movie from the search engine", Tags = new[] { "Search" })]
@@ -48,6 +52,7 @@ namespace CaptainWatch.Api.Controllers.Movies
             await _searchWriteService.DeleteMovie(movieId);
             return NoContent();
         }
+
 
         [HttpDelete("movies")]
         [SwaggerOperation(Summary = "Delete all movies from the search engine", Tags = new[] { "Search" })]

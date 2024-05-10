@@ -1,7 +1,7 @@
-﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
-using CaptainWatch.Api.Domain.Bo.Searchs.Request;
+﻿using CaptainWatch.Api.Domain.Bo.Searchs.Request;
 using CaptainWatch.Api.Domain.Interface.Repository;
 using CaptainWatch.Api.Repository.Meilisearch.Objects;
+using CaptainWatch.Api.Repository.Melisearch.Extensions;
 using Meilisearch;
 
 namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
@@ -14,30 +14,26 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             _meilisearchClient = meilisearchClient;
         }
 
-        public async Task AddMoviesDocuments(IEnumerable<MovieBo> movies)
+        public async Task AddMoviesDocuments(IEnumerable<SearchMovieAddOrUpdateBo> movies)
         {
-            await _meilisearchClient.Index("movies").AddDocumentsAsync(movies);
+            var searchMovies = movies.Select(_ => _.ToEntity());
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).AddDocumentsAsync(searchMovies);
         }
 
         public async Task DeleteAllMoviesDocuments()
         {
-            await _meilisearchClient.Index("movies").DeleteAllDocumentsAsync();
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).DeleteAllDocumentsAsync();
         }
 
         public async Task DeleteMovieDocument(int movieId)
         {
-            await _meilisearchClient.Index("movies").DeleteOneDocumentAsync(movieId);
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).DeleteOneDocumentAsync(movieId);
         }
 
-        public async Task AddOrUpdateMovieDocument(int movieId, SearchMovieAddOrUpdateBo movie)
+        public async Task AddOrUpdateMovieDocument(SearchMovieAddOrUpdateBo movie)
         {
-            var searchMovie = new SearchMovie
-            {
-                Id = movieId,
-                Title = movie.Title,
-                OriginalTitle = movie.OriginalTitle
-            };
-            await _meilisearchClient.Index("movies").UpdateDocumentsAsync(new List<SearchMovie> { searchMovie });
+            var searchMovie = movie.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateDocumentsAsync(new List<SearchMovie> { searchMovie });
         }
     }
 }
