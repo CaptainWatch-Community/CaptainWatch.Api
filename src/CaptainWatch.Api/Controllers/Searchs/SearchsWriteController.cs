@@ -22,6 +22,15 @@ namespace CaptainWatch.Api.Controllers.Movies
 
         #endregion
 
+        [HttpPost("config/init")]
+        [SwaggerOperation(Summary = "Initialize the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> InitSearchEngine()
+        {
+            await _searchWriteService.InitSearchEngine();
+            return NoContent();
+        }
+
         [HttpPut("movies")]
         [SwaggerOperation(Summary = "Import all movies into the search engine", Tags = new[] { "Search" })]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

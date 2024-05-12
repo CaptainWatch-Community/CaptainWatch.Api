@@ -18,6 +18,10 @@ namespace CaptainWatch.Api.Services.Movies
         }
         #endregion
 
+        public async Task InitSearchEngine()
+        {
+            await _searchRepo.InitSearchEngine();
+        }
         public async Task DeleteAllMovies()
         {
             await _searchRepo.DeleteAllMoviesDocuments();

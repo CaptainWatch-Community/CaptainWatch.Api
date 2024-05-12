@@ -60,6 +60,7 @@ builder.Services.AddScoped<IMovieReadService, MovieReadService>();
 builder.Services.AddScoped<ISitemapReadService, SitemapReadService>();
 builder.Services.AddScoped<IMovieWriteService, MovieWriteService>();
 builder.Services.AddScoped<ISearchWriteService, SearchWriteService>();
+builder.Services.AddScoped<ISearchReadService, SearchReadService>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
