@@ -1,9 +1,11 @@
 ﻿using CaptainWatch.Api.Domain.Bo.Searchs.Detail;
+using System.ComponentModel.DataAnnotations;
 
 namespace CaptainWatch.Api.Models.Searchs.Detail
 {
     public class SearchMovieDto
     {
+        [Required]
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string OriginalTitle { get; set; } = string.Empty;
