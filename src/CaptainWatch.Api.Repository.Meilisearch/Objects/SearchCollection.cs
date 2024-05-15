@@ -4,5 +4,6 @@ public enum SearchCollection
 {
     Movies,
     Series,
-    Users
+    Users,
+    Persons
 }

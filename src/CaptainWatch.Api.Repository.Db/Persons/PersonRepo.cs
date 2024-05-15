@@ -6,19 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CaptainWatch.Api.Repository.Db.Users
 {
-    public class UserRepo : IUserRepo
+    public class PersonRepo : IPersonRepo
     {
         private readonly CaptainWatchContext _dbContext;
 
-        public UserRepo(CaptainWatchContext dbContext)
+        public PersonRepo(CaptainWatchContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<SearchUserAddOrUpdateBo>> GetAllUsersForSearch()
+        public async Task<IEnumerable<SearchPersonAddOrUpdateBo>> GetAllPersonsForSearch()
         {
-            var users = await _dbContext.UserProfile.Include(_ => _.ExtraUserInformation).Select(UserExtensions.ProjectionToSearchUserAddOrUpdateBo).ToListAsync();
-            return users;
+            var persons = await _dbContext.Person.Select(PersonExtensions.ProjectionToSearchPersonAddOrUpdateBo).ToListAsync();
+            return persons;
         }
     }
 }

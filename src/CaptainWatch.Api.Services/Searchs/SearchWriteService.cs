@@ -12,13 +12,15 @@ namespace CaptainWatch.Api.Services.Movies
         private readonly ISearchRepo _searchRepo;
         private readonly ISerieRepo _serieRepo;
         private readonly IUserRepo _userRepo;
+        private readonly IPersonRepo _personRepo;
 
-        public SearchWriteService(IMovieRepo movieRepo, ISearchRepo searchRepo, ISerieRepo serieRepo, IUserRepo userRepo)
+        public SearchWriteService(IMovieRepo movieRepo, ISearchRepo searchRepo, ISerieRepo serieRepo, IUserRepo userRepo, IPersonRepo personRepo)
         {
             _movieRepo = movieRepo;
             _searchRepo = searchRepo;
             _serieRepo = serieRepo;
             _userRepo = userRepo;
+            _personRepo = personRepo;
         }
         #endregion
 
@@ -95,6 +97,31 @@ namespace CaptainWatch.Api.Services.Movies
         public async Task AddOrUpdateUser(SearchUserAddOrUpdateBo user)
         {
             await _searchRepo.AddOrUpdateUserDocument(user);
+        }
+
+        #endregion
+
+        #region Persons
+
+        public async Task DeleteAllPersons()
+        {
+            await _searchRepo.DeleteAllPersonsDocuments();
+        }
+
+        public async Task DeletePerson(int personId)
+        {
+            await _searchRepo.DeletePersonDocument(personId);
+        }
+
+        public async Task ImportAllPersons()
+        {
+            var persons = await _personRepo.GetAllPersonsForSearch();
+            await _searchRepo.AddPersonsDocuments(persons);
+        }
+
+        public async Task AddOrUpdatePerson(SearchPersonAddOrUpdateBo person)
+        {
+            await _searchRepo.AddOrUpdatePersonDocument(person);
         }
 
         #endregion

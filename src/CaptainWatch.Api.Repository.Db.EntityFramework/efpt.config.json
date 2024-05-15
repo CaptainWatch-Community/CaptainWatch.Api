@@ -27,6 +27,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Person]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[TV]",
          "ObjectType": 0
       },

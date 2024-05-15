@@ -50,5 +50,14 @@ namespace CaptainWatch.Api.Controllers.Movies
             var users = await _searchreadService.SearchUsers(query.ToBo());
             return Ok(users);
         }
+
+        [HttpPost("persons")]
+        [SwaggerOperation(Summary = "Search persons", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SearchPersonDto>))]
+        public async Task<ActionResult<IEnumerable<SearchPersonDto>>> SearchPersons([FromBody] SearchPersonQueryDto query)
+        {
+            var persons = await _searchreadService.SearchPersons(query.ToBo());
+            return Ok(persons);
+        }
     }
 }

@@ -19,6 +19,8 @@ public partial class CaptainWatchContext : DbContext
 
     public virtual DbSet<Movie> Movie { get; set; }
 
+    public virtual DbSet<Person> Person { get; set; }
+
     public virtual DbSet<Tv> Tv { get; set; }
 
     public virtual DbSet<UserProfile> UserProfile { get; set; }
@@ -294,6 +296,36 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.VoteCount).HasColumnName("vote_count");
             entity.Property(e => e.WatchlistCount).HasColumnName("watchlist_count");
             entity.Property(e => e.Wplay).HasColumnName("wplay");
+        });
+
+        modelBuilder.Entity<Person>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Biography)
+                .HasColumnType("ntext")
+                .HasColumnName("biography");
+            entity.Property(e => e.Birthday)
+                .HasColumnType("date")
+                .HasColumnName("birthday");
+            entity.Property(e => e.Deathday)
+                .HasColumnType("date")
+                .HasColumnName("deathday");
+            entity.Property(e => e.Gender).HasColumnName("gender");
+            entity.Property(e => e.LastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update");
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(200)
+                .HasColumnName("name");
+            entity.Property(e => e.PlaceOfBirth)
+                .HasMaxLength(100)
+                .HasColumnName("place_of_birth");
+            entity.Property(e => e.ProfilePath)
+                .HasMaxLength(255)
+                .HasColumnName("profile_path");
         });
 
         modelBuilder.Entity<Tv>(entity =>

@@ -28,6 +28,10 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             //User
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Users.ToString());
             await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchUser.Id).ToLower() });
+
+            //Person
+            await _meilisearchClient.CreateIndexAsync(SearchCollection.Persons.ToString());
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchPerson.Id).ToLower() });
         }
 
         #region Movies
@@ -140,6 +144,44 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             };
             var users = await _meilisearchClient.Index(SearchCollection.Users.ToString()).SearchAsync<SearchUserResult>(query.Query, searchQuery);
             return users.Hits.ToBo();
+        }
+
+        #endregion
+
+        #region Persons
+
+        public async Task AddPersonsDocuments(IEnumerable<SearchPersonAddOrUpdateBo> persons)
+        {
+            var searchPersons = persons.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).AddDocumentsAsync(searchPersons);
+        }
+
+        public async Task DeleteAllPersonsDocuments()
+        {
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).DeleteAllDocumentsAsync();
+        }
+
+        public async Task DeletePersonDocument(int personId)
+        {
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).DeleteOneDocumentAsync(personId);
+        }
+
+        public async Task AddOrUpdatePersonDocument(SearchPersonAddOrUpdateBo person)
+        {
+            var searchPerson = person.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateDocumentsAsync(new List<SearchPerson> { searchPerson });
+        }
+
+        public async Task<IEnumerable<SearchPersonBo>> SearchPersons(SearchPersonQueryBo query)
+        {
+            var searchQuery = new SearchQuery
+            {
+                ShowRankingScore = true,
+                Limit = query.MaxResults,
+                Filter = nameof(SearchPerson.Id).ToLower() + " NOT IN [" + string.Join(",", query.ExcludedIds) + "]"
+            };
+            var persons = await _meilisearchClient.Index(SearchCollection.Persons.ToString()).SearchAsync<SearchPersonResult>(query.Query, searchQuery);
+            return persons.Hits.ToBo();
         }
 
         #endregion

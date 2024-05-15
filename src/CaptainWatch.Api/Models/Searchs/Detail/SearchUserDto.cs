@@ -12,7 +12,7 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
 
     }
 
-    public static class SearchuserExtensions
+    public static class SearchUserExtensions
     {
         public static SearchUserBo ToBo(this SearchUserDto user)
         {

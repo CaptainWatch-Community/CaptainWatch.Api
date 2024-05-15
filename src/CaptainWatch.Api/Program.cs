@@ -69,6 +69,7 @@ builder.Services.AddScoped<ISerieRepo, SerieRepo>();
 builder.Services.AddScoped<IListRepo, ListRepo>();
 builder.Services.AddScoped<ISearchRepo, SearchRepo>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IPersonRepo, PersonRepo>();
 
 //dependency injection for meilisearch
 var searchmasterKey = builder.Configuration["Search:MasterKey"] ?? throw new Exception("Missing configuration key : Search:MasterKey");
