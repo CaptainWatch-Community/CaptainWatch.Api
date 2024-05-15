@@ -20,7 +20,13 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             //Movie
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Movies.ToString());
             await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchMovie.Id).ToLower() });
+
+            //Serie
+            await _meilisearchClient.CreateIndexAsync(SearchCollection.Series.ToString());
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchSerie.Id).ToLower() });
         }
+
+        #region Movies
 
         public async Task AddMoviesDocuments(IEnumerable<SearchMovieAddOrUpdateBo> movies)
         {
@@ -55,5 +61,45 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             var movies = await _meilisearchClient.Index(SearchCollection.Movies.ToString()).SearchAsync<SearchMovieResult>(query.Query, searchQuery);
             return movies.Hits.ToBo();
         }
+
+        #endregion
+
+        #region Series
+
+        public async Task AddSeriesDocuments(IEnumerable<SearchSerieAddOrUpdateBo> series)
+        {
+            var searchSeries = series.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).AddDocumentsAsync(searchSeries);
+        }
+
+        public async Task DeleteAllSeriesDocuments()
+        {
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).DeleteAllDocumentsAsync();
+        }
+
+        public async Task DeleteSerieDocument(int serieId)
+        {
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).DeleteOneDocumentAsync(serieId);
+        }
+
+        public async Task AddOrUpdateSerieDocument(SearchSerieAddOrUpdateBo serie)
+        {
+            var searchSerie = serie.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateDocumentsAsync(new List<SearchSerie> { searchSerie });
+        }
+
+        public async Task<IEnumerable<SearchSerieBo>> SearchSeries(SearchSerieQueryBo query)
+        {
+            var searchQuery = new SearchQuery
+            {
+                ShowRankingScore = true,
+                Limit = query.MaxResults,
+                Filter = nameof(SearchSerie.Id).ToLower() + " NOT IN [" + string.Join(",", query.ExcludedIds) + "]"
+            };
+            var series = await _meilisearchClient.Index(SearchCollection.Series.ToString()).SearchAsync<SearchSerieResult>(query.Query, searchQuery);
+            return series.Hits.ToBo();
+        }
+
+        #endregion
     }
 }

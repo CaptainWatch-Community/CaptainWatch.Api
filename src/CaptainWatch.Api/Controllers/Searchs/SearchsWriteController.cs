@@ -31,6 +31,9 @@ namespace CaptainWatch.Api.Controllers.Movies
             return NoContent();
         }
 
+
+        #region Movies
+
         [HttpPut("movies")]
         [SwaggerOperation(Summary = "Import all movies into the search engine", Tags = new[] { "Search" })]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -42,7 +45,7 @@ namespace CaptainWatch.Api.Controllers.Movies
 
 
         [HttpPut("movies/{movieId}")]
-        [SwaggerOperation(Summary = "Add or Update a movie in the search engine", Tags = new[] { "Search" })]
+        [SwaggerOperation(Summary = "Add or update a movie in the search engine", Tags = new[] { "Search" })]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> AddOrUpdateMovie(int movieId, [FromBody] SearchMovieAddOrUpdateDto movie)
         {
@@ -71,5 +74,52 @@ namespace CaptainWatch.Api.Controllers.Movies
             await _searchWriteService.DeleteAllMovies();
             return NoContent();
         }
+
+        #endregion
+
+        #region Series
+
+        [HttpPut("series")]
+        [SwaggerOperation(Summary = "Import all series into the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> ImportAllSeries()
+        {
+            await _searchWriteService.ImportAllSeries();
+            return NoContent();
+        }
+
+
+        [HttpPut("series/{serieId}")]
+        [SwaggerOperation(Summary = "Add or update a serie in the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> AddOrUpdateSerie(int serieId, [FromBody] SearchSerieAddOrUpdateDto serie)
+        {
+            var serieBo = serie.ToBo();
+            serieBo.Id = serieId;
+            await _searchWriteService.AddOrUpdateSerie(serieBo);
+            return NoContent();
+        }
+
+
+        [HttpDelete("series/{serieId}")]
+        [SwaggerOperation(Summary = "Delete a serie from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteSerie(int serieId)
+        {
+            await _searchWriteService.DeleteSerie(serieId);
+            return NoContent();
+        }
+
+
+        [HttpDelete("series")]
+        [SwaggerOperation(Summary = "Delete all series from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteAllSeries()
+        {
+            await _searchWriteService.DeleteAllSeries();
+            return NoContent();
+        }
+
+        #endregion
     }
 }

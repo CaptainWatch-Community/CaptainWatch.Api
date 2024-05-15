@@ -33,6 +33,13 @@ namespace CaptainWatch.Api.Controllers.Movies
             return Ok(movies);
         }
 
-
+        [HttpPost("series")]
+        [SwaggerOperation(Summary = "Search series", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SearchSerieDto>))]
+        public async Task<ActionResult<IEnumerable<SearchSerieDto>>> SearchSeries([FromBody] SearchSerieQueryDto query)
+        {
+            var series = await _searchreadService.SearchSeries(query.ToBo());
+            return Ok(series);
+        }
     }
 }

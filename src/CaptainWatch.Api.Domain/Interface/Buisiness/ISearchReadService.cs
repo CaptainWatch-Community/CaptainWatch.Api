@@ -6,5 +6,6 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
     public interface ISearchReadService
     {
         Task<IEnumerable<SearchMovieBo>> SearchMovies(SearchMovieQueryBo query);
+        Task<IEnumerable<SearchSerieBo>> SearchSeries(SearchSerieQueryBo query);
     }
 }

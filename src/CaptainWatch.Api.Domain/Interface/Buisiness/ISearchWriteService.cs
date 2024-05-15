@@ -9,5 +9,10 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
         Task AddOrUpdateMovie(SearchMovieAddOrUpdateBo movie);
         Task DeleteMovie(int movieId);
         Task DeleteAllMovies();
+
+        Task ImportAllSeries();
+        Task AddOrUpdateSerie(SearchSerieAddOrUpdateBo serie);
+        Task DeleteSerie(int serieId);
+        Task DeleteAllSeries();
     }
 }
