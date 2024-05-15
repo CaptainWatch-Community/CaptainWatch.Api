@@ -15,6 +15,10 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[dbo].[ExtraUserInformation]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[List]",
          "ObjectType": 0
       },
@@ -24,6 +28,10 @@
       },
       {
          "Name": "[dbo].[TV]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserProfile]",
          "ObjectType": 0
       },
       {

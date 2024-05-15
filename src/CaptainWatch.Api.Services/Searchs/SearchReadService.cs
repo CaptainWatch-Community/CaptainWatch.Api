@@ -28,5 +28,11 @@ namespace CaptainWatch.Api.Services.Movies
             var series = await _searchRepo.SearchSeries(query);
             return series;
         }
+
+        public async Task<IEnumerable<SearchUserBo>> SearchUsers(SearchUserQueryBo query)
+        {
+            var users = await _searchRepo.SearchUsers(query);
+            return users;
+        }
     }
 }

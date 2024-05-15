@@ -18,5 +18,11 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
         Task AddOrUpdateSerieDocument(SearchSerieAddOrUpdateBo serie);
         Task DeleteAllSeriesDocuments();
         Task<IEnumerable<SearchSerieBo>> SearchSeries(SearchSerieQueryBo query);
+
+        Task AddUsersDocuments(IEnumerable<SearchUserAddOrUpdateBo> users);
+        Task DeleteUserDocument(int userId);
+        Task AddOrUpdateUserDocument(SearchUserAddOrUpdateBo user);
+        Task DeleteAllUsersDocuments();
+        Task<IEnumerable<SearchUserBo>> SearchUsers(SearchUserQueryBo query);
     }
 }

@@ -14,5 +14,10 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
         Task AddOrUpdateSerie(SearchSerieAddOrUpdateBo serie);
         Task DeleteSerie(int serieId);
         Task DeleteAllSeries();
+
+        Task ImportAllUsers();
+        Task AddOrUpdateUser(SearchUserAddOrUpdateBo user);
+        Task DeleteUser(int userId);
+        Task DeleteAllUsers();
     }
 }

@@ -121,5 +121,51 @@ namespace CaptainWatch.Api.Controllers.Movies
         }
 
         #endregion
+
+        #region Users
+
+        [HttpPut("users")]
+        [SwaggerOperation(Summary = "Import all users into the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> ImportAllUsers()
+        {
+            await _searchWriteService.ImportAllUsers();
+            return NoContent();
+        }
+
+
+        [HttpPut("users/{userId}")]
+        [SwaggerOperation(Summary = "Add or update a user in the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> AddOrUpdateUser(int userId, [FromBody] SearchUserAddOrUpdateDto user)
+        {
+            var userBo = user.ToBo();
+            userBo.Id = userId;
+            await _searchWriteService.AddOrUpdateUser(userBo);
+            return NoContent();
+        }
+
+
+        [HttpDelete("users/{userId}")]
+        [SwaggerOperation(Summary = "Delete a user from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteUser(int userId)
+        {
+            await _searchWriteService.DeleteUser(userId);
+            return NoContent();
+        }
+
+
+        [HttpDelete("users")]
+        [SwaggerOperation(Summary = "Delete all users from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteAllUsers()
+        {
+            await _searchWriteService.DeleteAllUsers();
+            return NoContent();
+        }
+
+
+        #endregion
     }
 }

@@ -5,6 +5,7 @@ using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using CaptainWatch.Api.Repository.Db.Lists;
 using CaptainWatch.Api.Repository.Db.Movies;
 using CaptainWatch.Api.Repository.Db.Series;
+using CaptainWatch.Api.Repository.Db.Users;
 using CaptainWatch.Api.Repository.Meilisearch.Searchs;
 using CaptainWatch.Api.Services.Movies;
 using CaptainWatch.Api.Services.Sitemaps;
@@ -67,6 +68,7 @@ builder.Services.AddScoped<IMovieRepo, MovieRepo>();
 builder.Services.AddScoped<ISerieRepo, SerieRepo>();
 builder.Services.AddScoped<IListRepo, ListRepo>();
 builder.Services.AddScoped<ISearchRepo, SearchRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
 
 //dependency injection for meilisearch
 var searchmasterKey = builder.Configuration["Search:MasterKey"] ?? throw new Exception("Missing configuration key : Search:MasterKey");

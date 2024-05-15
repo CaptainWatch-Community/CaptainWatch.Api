@@ -24,6 +24,10 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             //Serie
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Series.ToString());
             await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchSerie.Id).ToLower() });
+
+            //User
+            await _meilisearchClient.CreateIndexAsync(SearchCollection.Users.ToString());
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchUser.Id).ToLower() });
         }
 
         #region Movies
@@ -98,6 +102,44 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             };
             var series = await _meilisearchClient.Index(SearchCollection.Series.ToString()).SearchAsync<SearchSerieResult>(query.Query, searchQuery);
             return series.Hits.ToBo();
+        }
+
+        #endregion
+
+        #region Users
+
+        public async Task AddUsersDocuments(IEnumerable<SearchUserAddOrUpdateBo> users)
+        {
+            var searchUsers = users.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).AddDocumentsAsync(searchUsers);
+        }
+
+        public async Task DeleteAllUsersDocuments()
+        {
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).DeleteAllDocumentsAsync();
+        }
+
+        public async Task DeleteUserDocument(int userId)
+        {
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).DeleteOneDocumentAsync(userId);
+        }
+
+        public async Task AddOrUpdateUserDocument(SearchUserAddOrUpdateBo user)
+        {
+            var searchUser = user.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateDocumentsAsync(new List<SearchUser> { searchUser });
+        }
+
+        public async Task<IEnumerable<SearchUserBo>> SearchUsers(SearchUserQueryBo query)
+        {
+            var searchQuery = new SearchQuery
+            {
+                ShowRankingScore = true,
+                Limit = query.MaxResults,
+                Filter = nameof(SearchUser.Id).ToLower() + " NOT IN [" + string.Join(",", query.ExcludedIds) + "]"
+            };
+            var users = await _meilisearchClient.Index(SearchCollection.Users.ToString()).SearchAsync<SearchUserResult>(query.Query, searchQuery);
+            return users.Hits.ToBo();
         }
 
         #endregion
