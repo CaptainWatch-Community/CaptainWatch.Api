@@ -10,6 +10,8 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
         public string Title { get; set; } = string.Empty;
         public string OriginalTitle { get; set; } = string.Empty;
         public DateTime? MinReleaseDate { get; set; }
+
+        [Required]
         public double RankingScore { get; set; }
 
     }

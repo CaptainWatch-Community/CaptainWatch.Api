@@ -16,7 +16,8 @@ namespace CaptainWatch.Api.Repository.Melisearch.Extensions
             return new SearchPersonBo
             {
                 Id = s.Id,
-                Name = s.Name
+                Name = s.Name,
+                RankingScore = s._rankingScore
             };
         }
     }

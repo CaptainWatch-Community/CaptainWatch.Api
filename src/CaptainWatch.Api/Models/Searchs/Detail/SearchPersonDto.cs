@@ -9,6 +9,8 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
 
+        [Required]
+        public double RankingScore { get; set; }
     }
 
     public static class SearchPersonExtensions
@@ -18,7 +20,8 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
             return new SearchPersonBo
             {
                 Id = person.Id,
-                Name = person.Name
+                Name = person.Name,
+                RankingScore = person.RankingScore
             };
         }
     }
