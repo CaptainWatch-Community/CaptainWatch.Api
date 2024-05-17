@@ -32,6 +32,10 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             //Person
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Persons.ToString());
             await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchPerson.Id).ToLower() });
+
+            //List
+            await _meilisearchClient.CreateIndexAsync(SearchCollection.Lists.ToString());
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchList.Id).ToLower() });
         }
 
         #region Movies
@@ -182,6 +186,44 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
             };
             var persons = await _meilisearchClient.Index(SearchCollection.Persons.ToString()).SearchAsync<SearchPersonResult>(query.Query, searchQuery);
             return persons.Hits.ToBo();
+        }
+
+        #endregion
+
+        #region Lists
+
+        public async Task AddListsDocuments(IEnumerable<SearchListAddOrUpdateBo> lists)
+        {
+            var searchLists = lists.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).AddDocumentsAsync(searchLists);
+        }
+
+        public async Task DeleteAllListsDocuments()
+        {
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).DeleteAllDocumentsAsync();
+        }
+
+        public async Task DeleteListDocument(int listId)
+        {
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).DeleteOneDocumentAsync(listId);
+        }
+
+        public async Task AddOrUpdateListDocument(SearchListAddOrUpdateBo list)
+        {
+            var searchList = list.ToEntity();
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).UpdateDocumentsAsync(new List<SearchList> { searchList });
+        }
+
+        public async Task<IEnumerable<SearchListBo>> SearchLists(SearchListQueryBo query)
+        {
+            var searchQuery = new SearchQuery
+            {
+                ShowRankingScore = true,
+                Limit = query.MaxResults,
+                Filter = nameof(SearchList.Id).ToLower() + " NOT IN [" + string.Join(",", query.ExcludedIds) + "]"
+            };
+            var lists = await _meilisearchClient.Index(SearchCollection.Lists.ToString()).SearchAsync<SearchListResult>(query.Query, searchQuery);
+            return lists.Hits.ToBo();
         }
 
         #endregion

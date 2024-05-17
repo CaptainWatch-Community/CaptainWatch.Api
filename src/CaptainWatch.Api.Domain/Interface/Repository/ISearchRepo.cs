@@ -30,5 +30,11 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
         Task AddOrUpdatePersonDocument(SearchPersonAddOrUpdateBo person);
         Task DeleteAllPersonsDocuments();
         Task<IEnumerable<SearchPersonBo>> SearchPersons(SearchPersonQueryBo query);
+
+        Task AddListsDocuments(IEnumerable<SearchListAddOrUpdateBo> lists);
+        Task DeleteListDocument(int listId);
+        Task AddOrUpdateListDocument(SearchListAddOrUpdateBo list);
+        Task DeleteAllListsDocuments();
+        Task<IEnumerable<SearchListBo>> SearchLists(SearchListQueryBo query);
     }
 }

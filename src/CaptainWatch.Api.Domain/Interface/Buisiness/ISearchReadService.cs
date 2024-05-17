@@ -9,5 +9,6 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
         Task<IEnumerable<SearchSerieBo>> SearchSeries(SearchSerieQueryBo query);
         Task<IEnumerable<SearchUserBo>> SearchUsers(SearchUserQueryBo query);
         Task<IEnumerable<SearchPersonBo>> SearchPersons(SearchPersonQueryBo query);
+        Task<IEnumerable<SearchListBo>> SearchLists(SearchListQueryBo query);
     }
 }

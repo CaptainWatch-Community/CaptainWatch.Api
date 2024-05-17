@@ -24,5 +24,10 @@ namespace CaptainWatch.Api.Domain.Interface.Buisiness
         Task AddOrUpdatePerson(SearchPersonAddOrUpdateBo person);
         Task DeletePerson(int personId);
         Task DeleteAllPersons();
+
+        Task ImportAllLists();
+        Task AddOrUpdateList(SearchListAddOrUpdateBo list);
+        Task DeleteList(int listId);
+        Task DeleteAllLists();
     }
 }

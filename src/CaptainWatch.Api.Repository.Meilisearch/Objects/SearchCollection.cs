@@ -5,5 +5,6 @@ public enum SearchCollection
     Movies,
     Series,
     Users,
-    Persons
+    Persons,
+    Lists
 }

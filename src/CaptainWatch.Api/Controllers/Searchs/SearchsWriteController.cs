@@ -212,5 +212,50 @@ namespace CaptainWatch.Api.Controllers.Movies
         }
 
         #endregion
+
+        #region Lists
+
+        [HttpPut("lists")]
+        [SwaggerOperation(Summary = "Import all lists into the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> ImportAllLists()
+        {
+            await _searchWriteService.ImportAllLists();
+            return NoContent();
+        }
+
+
+        [HttpPut("lists/{listId}")]
+        [SwaggerOperation(Summary = "Add or update a list in the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> AddOrUpdateList(int listId, [FromBody] SearchListAddOrUpdateDto list)
+        {
+            var listBo = list.ToBo();
+            listBo.Id = listId;
+            await _searchWriteService.AddOrUpdateList(listBo);
+            return NoContent();
+        }
+
+
+        [HttpDelete("lists/{listId}")]
+        [SwaggerOperation(Summary = "Delete a list from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteList(int listId)
+        {
+            await _searchWriteService.DeleteList(listId);
+            return NoContent();
+        }
+
+
+        [HttpDelete("lists")]
+        [SwaggerOperation(Summary = "Delete all lists from the search engine", Tags = new[] { "Search" })]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<ActionResult> DeleteAllLists()
+        {
+            await _searchWriteService.DeleteAllLists();
+            return NoContent();
+        }
+
+        #endregion
     }
 }
