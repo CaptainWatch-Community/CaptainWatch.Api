@@ -16,7 +16,7 @@ namespace CaptainWatch.Api.Repository.Melisearch.Extensions
             {
                 Id = s.Id,
                 FullName = s.FullName,
-                UserName = s.UserName
+                Pseudo = s.Pseudo
             };
         }
     }

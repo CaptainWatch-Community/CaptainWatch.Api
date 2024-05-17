@@ -8,7 +8,7 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
         [Required]
         public int Id { get; set; }
         public string FullName { get; set; } = string.Empty;
-        public string UserName { get; set; } = string.Empty;
+        public string Pseudo { get; set; } = string.Empty;
 
         [Required]
         public double RankingScore { get; set; }
@@ -23,7 +23,7 @@ namespace CaptainWatch.Api.Models.Searchs.Detail
             {
                 Id = user.Id,
                 FullName = user.FullName,
-                UserName = user.UserName,
+                Pseudo = user.Pseudo,
                 RankingScore = user.RankingScore
             };
         }

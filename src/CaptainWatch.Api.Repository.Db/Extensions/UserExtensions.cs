@@ -10,7 +10,7 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
         public static Expression<Func<UserProfile, SearchUserAddOrUpdateBo>> ProjectionToSearchUserAddOrUpdateBo => user => new SearchUserAddOrUpdateBo
         {
             Id = user.UserId,
-            UserName = user.UserName,
+            Pseudo = user.UserName,
             FullName = user.ExtraUserInformation.First().FullName ?? string.Empty,
         };
     }

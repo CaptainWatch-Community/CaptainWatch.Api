@@ -5,7 +5,7 @@ namespace CaptainWatch.Api.Models.Searchs.Request
     public class SearchUserAddOrUpdateDto
     {
         public string FullName { get; set; } = string.Empty;
-        public string UserName { get; set; } = string.Empty;
+        public string Pseudo { get; set; } = string.Empty;
     }
 
     public static class SearchUserAddOrUpdateExtensions
@@ -15,7 +15,7 @@ namespace CaptainWatch.Api.Models.Searchs.Request
             return new SearchUserAddOrUpdateBo
             {
                 FullName = user.FullName,
-                UserName = user.UserName
+                Pseudo = user.Pseudo
             };
         }
     }
