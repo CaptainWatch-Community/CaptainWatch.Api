@@ -13,5 +13,6 @@ namespace CaptainWatch.Api.Repository.Db.EntityFramework.Objects
     public partial interface ICaptainWatchContextProcedures
     {
         Task<int> DeleteMovieAsync(int? Id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<int> DeleteTVAsync(int? Id, OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
     }
 }

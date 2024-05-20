@@ -31,5 +31,10 @@ namespace CaptainWatch.Api.Repository.Db.Series
             var series = await _dbContext.Tv.Select(SerieExtensions.ProjectionToSearchSerieAddOrUpdateBo).ToListAsync();
             return series;
         }
+
+        public async Task DeleteSerie(int serieId)
+        {
+            await _dbContext.Procedures.DeleteTVAsync(serieId);
+        }
     }
 }

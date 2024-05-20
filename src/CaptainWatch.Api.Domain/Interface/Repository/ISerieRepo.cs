@@ -7,6 +7,7 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
     {
         Task<IEnumerable<SerieBo>> GetSeriesWithPositiveSiteScore();
         Task<IEnumerable<SearchSerieAddOrUpdateBo>> GetAllSeriesForSearch();
+        Task DeleteSerie(int serieId);
 
     }
 }

@@ -8,6 +8,7 @@ using CaptainWatch.Api.Repository.Db.Series;
 using CaptainWatch.Api.Repository.Db.Users;
 using CaptainWatch.Api.Repository.Meilisearch.Searchs;
 using CaptainWatch.Api.Services.Movies;
+using CaptainWatch.Api.Services.Series;
 using CaptainWatch.Api.Services.Sitemaps;
 using Meilisearch;
 using Microsoft.AspNetCore.Authentication;
@@ -62,6 +63,7 @@ builder.Services.AddScoped<ISitemapReadService, SitemapReadService>();
 builder.Services.AddScoped<IMovieWriteService, MovieWriteService>();
 builder.Services.AddScoped<ISearchWriteService, SearchWriteService>();
 builder.Services.AddScoped<ISearchReadService, SearchReadService>();
+builder.Services.AddScoped<ISerieWriteService, SerieWriteService>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();

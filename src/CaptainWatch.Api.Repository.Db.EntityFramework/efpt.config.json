@@ -41,6 +41,10 @@
       {
          "Name": "[dbo].[DeleteMovie]",
          "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[DeleteTV]",
+         "ObjectType": 1
       }
    ],
    "UiHint": null,
