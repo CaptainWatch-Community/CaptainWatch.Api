@@ -13,14 +13,104 @@ public partial class CaptainWatchContext : DbContext
     {
     }
 
+    public virtual DbSet<ExtraUserInformation> ExtraUserInformation { get; set; }
+
     public virtual DbSet<List> List { get; set; }
 
     public virtual DbSet<Movie> Movie { get; set; }
 
+    public virtual DbSet<Person> Person { get; set; }
+
     public virtual DbSet<Tv> Tv { get; set; }
+
+    public virtual DbSet<UserProfile> UserProfile { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ExtraUserInformation>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_dbo.ExtraUserInformation");
+
+            entity.HasIndex(e => e.UserLanguage, "CL_ExtraUserInformation_Language");
+
+            entity.HasIndex(e => e.UserId, "CL_ExtraUserInformation_Score");
+
+            entity.HasIndex(e => new { e.UserId, e.LastActivity }, "CL_ExtraUserInformation_UserIdActivity");
+
+            entity.HasIndex(e => new { e.UserId, e.UserLanguage }, "CL_ExtraUserInformation_UserIdLanguage");
+
+            entity.Property(e => e.AbTestingSubscription).HasColumnName("AbTesting_subscription");
+            entity.Property(e => e.AhaMomentMode).HasMaxLength(10);
+            entity.Property(e => e.BeginRatingDate).HasColumnType("datetime");
+            entity.Property(e => e.Birthdate).HasColumnType("date");
+            entity.Property(e => e.FbAgeRange)
+                .HasMaxLength(50)
+                .HasColumnName("fb_age_range");
+            entity.Property(e => e.FbFirstName)
+                .HasMaxLength(100)
+                .HasColumnName("fb_first_name");
+            entity.Property(e => e.FbGender)
+                .HasMaxLength(50)
+                .HasColumnName("fb_gender");
+            entity.Property(e => e.FbId)
+                .HasMaxLength(100)
+                .HasColumnName("fb_id");
+            entity.Property(e => e.FbLastName)
+                .HasMaxLength(100)
+                .HasColumnName("fb_last_name");
+            entity.Property(e => e.FbLink)
+                .HasMaxLength(255)
+                .HasColumnName("fb_link");
+            entity.Property(e => e.FbName)
+                .HasMaxLength(100)
+                .HasColumnName("fb_name");
+            entity.Property(e => e.FirstActivity).HasColumnType("datetime");
+            entity.Property(e => e.FirstName).HasMaxLength(50);
+            entity.Property(e => e.FirstRecoActivity).HasColumnType("datetime");
+            entity.Property(e => e.HomeHulkVersion).HasMaxLength(50);
+            entity.Property(e => e.InternalEmailValid).HasDefaultValueSql("((0))");
+            entity.Property(e => e.LastActivity).HasColumnType("datetime");
+            entity.Property(e => e.LastActivityAppiOs)
+                .HasColumnType("datetime")
+                .HasColumnName("LastActivityAppiOS");
+            entity.Property(e => e.LastName).HasMaxLength(50);
+            entity.Property(e => e.LastNotifConsult).HasColumnType("datetime");
+            entity.Property(e => e.LastWatchListConsult).HasColumnType("datetime");
+            entity.Property(e => e.Step1Filled).HasColumnType("datetime");
+            entity.Property(e => e.Title).HasMaxLength(1);
+            entity.Property(e => e.UnsubscribedAllMail).HasDefaultValueSql("((0))");
+            entity.Property(e => e.UserFacebook)
+                .HasMaxLength(100)
+                .HasColumnName("user_facebook");
+            entity.Property(e => e.UserInstagram)
+                .HasMaxLength(100)
+                .HasColumnName("user_instagram");
+            entity.Property(e => e.UserLanguage)
+                .IsRequired()
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasDefaultValueSql("('fr')")
+                .IsFixedLength();
+            entity.Property(e => e.UserScore).HasColumnName("user_score");
+            entity.Property(e => e.UserSnapchat)
+                .HasMaxLength(100)
+                .HasColumnName("user_snapchat");
+            entity.Property(e => e.UserTwitter)
+                .HasMaxLength(100)
+                .HasColumnName("user_twitter");
+            entity.Property(e => e.UserYoutube)
+                .HasMaxLength(100)
+                .HasColumnName("user_youtube");
+            entity.Property(e => e.WProfil)
+                .HasMaxLength(20)
+                .HasColumnName("w_profil");
+
+            entity.HasOne(d => d.User).WithMany(p => p.ExtraUserInformation)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ExtraUserInformation_UserProfile");
+        });
+
         modelBuilder.Entity<List>(entity =>
         {
             entity.HasIndex(e => e.CreatorUserId, "CL_List_Creator");
@@ -208,6 +298,36 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.Wplay).HasColumnName("wplay");
         });
 
+        modelBuilder.Entity<Person>(entity =>
+        {
+            entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+            entity.Property(e => e.Biography)
+                .HasColumnType("ntext")
+                .HasColumnName("biography");
+            entity.Property(e => e.Birthday)
+                .HasColumnType("date")
+                .HasColumnName("birthday");
+            entity.Property(e => e.Deathday)
+                .HasColumnType("date")
+                .HasColumnName("deathday");
+            entity.Property(e => e.Gender).HasColumnName("gender");
+            entity.Property(e => e.LastUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("last_update");
+            entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(200)
+                .HasColumnName("name");
+            entity.Property(e => e.PlaceOfBirth)
+                .HasMaxLength(100)
+                .HasColumnName("place_of_birth");
+            entity.Property(e => e.ProfilePath)
+                .HasMaxLength(255)
+                .HasColumnName("profile_path");
+        });
+
         modelBuilder.Entity<Tv>(entity =>
         {
             entity.ToTable("TV");
@@ -318,6 +438,18 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.VoteAverage).HasColumnName("vote_average");
             entity.Property(e => e.VoteCount).HasColumnName("vote_count");
             entity.Property(e => e.WatchlistCount).HasColumnName("watchlist_count");
+        });
+
+        modelBuilder.Entity<UserProfile>(entity =>
+        {
+            entity.HasKey(e => e.UserId).HasName("PK__UserProf__1788CC4C4B82B114");
+
+            entity.HasIndex(e => e.UserName, "UQ__UserProf__C9F28456AE8A781F").IsUnique();
+
+            entity.Property(e => e.UserGuid).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.UserName)
+                .IsRequired()
+                .HasMaxLength(56);
         });
 
         OnModelCreatingGeneratedProcedures(modelBuilder);

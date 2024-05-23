@@ -15,6 +15,10 @@
    "T4TemplatePath": null,
    "Tables": [
       {
+         "Name": "[dbo].[ExtraUserInformation]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[List]",
          "ObjectType": 0
       },
@@ -23,11 +27,23 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Person]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[TV]",
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[UserProfile]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[DeleteMovie]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[DeleteTV]",
          "ObjectType": 1
       }
    ],

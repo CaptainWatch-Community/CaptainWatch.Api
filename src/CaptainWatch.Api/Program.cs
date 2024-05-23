@@ -5,8 +5,13 @@ using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
 using CaptainWatch.Api.Repository.Db.Lists;
 using CaptainWatch.Api.Repository.Db.Movies;
 using CaptainWatch.Api.Repository.Db.Series;
+using CaptainWatch.Api.Repository.Db.Users;
+using CaptainWatch.Api.Repository.Meilisearch.Searchs;
 using CaptainWatch.Api.Services.Movies;
+using CaptainWatch.Api.Services.Series;
 using CaptainWatch.Api.Services.Sitemaps;
+using ElmahCore.Mvc;
+using Meilisearch;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -41,7 +46,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.5" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.6" });
 });
 
 // Add services to the container.
@@ -57,15 +62,36 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMovieReadService, MovieReadService>();
 builder.Services.AddScoped<ISitemapReadService, SitemapReadService>();
 builder.Services.AddScoped<IMovieWriteService, MovieWriteService>();
+builder.Services.AddScoped<ISearchWriteService, SearchWriteService>();
+builder.Services.AddScoped<ISearchReadService, SearchReadService>();
+builder.Services.AddScoped<ISerieWriteService, SerieWriteService>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
 builder.Services.AddScoped<ISerieRepo, SerieRepo>();
 builder.Services.AddScoped<IListRepo, ListRepo>();
+builder.Services.AddScoped<ISearchRepo, SearchRepo>();
+builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddScoped<IPersonRepo, PersonRepo>();
+
+//dependency injection for meilisearch
+var searchmasterKey = builder.Configuration["Search:MasterKey"] ?? throw new Exception("Missing configuration key : Search:MasterKey");
+var searchUrl = builder.Configuration["Search:Url"] ?? throw new Exception("Missing configuration key : Search:Url");
+builder.Services.AddSingleton(new MeilisearchClient(searchUrl, searchmasterKey));
 
 //dependency injection for db context
 builder.Services.AddDbContext<CaptainWatchContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+//Elmah
+builder.Services.AddElmah();
+
+builder.Services.AddElmah(options =>
+{
+    options.Path = builder.Configuration["Logs:ElmahPath"] ?? throw new Exception("Missing configuration key : Logs:ElmahPath");
+});
 
 var app = builder.Build();
 
@@ -75,6 +101,9 @@ app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+//Elmah
+app.UseElmah();
 
 app.MapControllers();
 

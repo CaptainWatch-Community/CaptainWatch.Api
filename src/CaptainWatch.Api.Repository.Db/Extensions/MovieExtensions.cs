@@ -1,5 +1,7 @@
 ﻿using CaptainWatch.Api.Domain.Bo.Movies.Detail;
+using CaptainWatch.Api.Domain.Bo.Searchs.Request;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
+using System.Linq.Expressions;
 
 namespace CaptainWatch.Api.Repository.Db.Extensions
 {
@@ -32,5 +34,29 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
                 Title = s.Title,
             };
         }
+
+        public static IEnumerable<SearchMovieAddOrUpdateBo> ToSearchMovieAddOrUpdateBo(this IEnumerable<Movie> s)
+        {
+            return s.Select(_ => _.ToSearchMovieAddOrUpdateBo());
+        }
+
+        public static SearchMovieAddOrUpdateBo ToSearchMovieAddOrUpdateBo(this Movie s)
+        {
+            return new SearchMovieAddOrUpdateBo
+            {
+                Id = s.Id,
+                Title = s.Title,
+                OriginalTitle = s.OriginalTitle,
+                MinReleaseDate = s.MinReleaseDate
+            };
+        }
+
+        public static Expression<Func<Movie, SearchMovieAddOrUpdateBo>> ProjectionToSearchMovieAddOrUpdateBo => movie => new SearchMovieAddOrUpdateBo
+        {
+            Id = movie.Id,
+            Title = movie.Title,
+            OriginalTitle = movie.OriginalTitle,
+            MinReleaseDate = movie.MinReleaseDate
+        };
     }
 }

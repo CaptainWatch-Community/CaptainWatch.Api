@@ -1,5 +1,7 @@
-﻿using CaptainWatch.Api.Domain.Bo.Series.Detail;
+﻿using CaptainWatch.Api.Domain.Bo.Searchs.Request;
+using CaptainWatch.Api.Domain.Bo.Series.Detail;
 using CaptainWatch.Api.Repository.Db.EntityFramework.Objects;
+using System.Linq.Expressions;
 
 namespace CaptainWatch.Api.Repository.Db.Extensions
 {
@@ -19,5 +21,13 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
                 Title = s.Name,
             };
         }
+
+        public static Expression<Func<Tv, SearchSerieAddOrUpdateBo>> ProjectionToSearchSerieAddOrUpdateBo => serie => new SearchSerieAddOrUpdateBo
+        {
+            Id = serie.Id,
+            Title = serie.Name,
+            OriginalTitle = serie.OriginalName,
+            FirstAirDate = serie.FirstAirDate
+        };
     }
 }
