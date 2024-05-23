@@ -10,6 +10,7 @@ using CaptainWatch.Api.Repository.Meilisearch.Searchs;
 using CaptainWatch.Api.Services.Movies;
 using CaptainWatch.Api.Services.Series;
 using CaptainWatch.Api.Services.Sitemaps;
+using ElmahCore.Mvc;
 using Meilisearch;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -45,7 +46,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.5" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.6" });
 });
 
 // Add services to the container.
@@ -82,6 +83,16 @@ builder.Services.AddSingleton(new MeilisearchClient(searchUrl, searchmasterKey))
 builder.Services.AddDbContext<CaptainWatchContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
+//Elmah
+builder.Services.AddElmah();
+
+builder.Services.AddElmah(options =>
+{
+    options.Path = builder.Configuration["Logs:ElmahPath"] ?? throw new Exception("Missing configuration key : Logs:ElmahPath");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -90,6 +101,9 @@ app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+//Elmah
+app.UseElmah();
 
 app.MapControllers();
 
