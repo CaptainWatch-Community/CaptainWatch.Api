@@ -360,3 +360,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Docker data
+docker/data/meilisearch/*
+docker/data/sqlserver/*
+
+# Docker data allow empty folders to be committed by adding a .gitkeep file
+!docker/data/meilisearch/.gitkeep
+!docker/data/sqlserver/.gitkeep

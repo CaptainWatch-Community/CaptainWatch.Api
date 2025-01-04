@@ -1,0 +1,25 @@
+name: captain_watch
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.7.6
+    container_name: cw_meilisearch
+    ports:
+      - "7700:7700"
+    environment:
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY}
+    volumes:
+      - ./data/meilisearch:/meili_data # Volume for persistent data
+    restart: always
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cw_sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+    volumes:
+      - ./data/sqlserver:/var/opt/mssql/backup # Backup storage volume
+    restart: always
