@@ -47,7 +47,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.ActionDescriptor.RouteValues["action"]}");
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.7" });
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "CaptainWatch.Api", Version = "1.0.8" });
 });
 
 // Add services to the container.
@@ -66,6 +66,7 @@ builder.Services.AddScoped<IMovieWriteService, MovieWriteService>();
 builder.Services.AddScoped<ISearchWriteService, SearchWriteService>();
 builder.Services.AddScoped<ISearchReadService, SearchReadService>();
 builder.Services.AddScoped<ISerieWriteService, SerieWriteService>();
+builder.Services.AddScoped<IEmailWriteService, EmailWriteService>();
 
 //dependency injection for repositories
 builder.Services.AddScoped<IMovieRepo, MovieRepo>();
