@@ -19,6 +19,7 @@
     <ProjectReference Include="..\CaptainWatch.Api.Repository.Db\CaptainWatch.Api.Repository.Db.csproj" />
     <ProjectReference Include="..\CaptainWatch.Api.Repository.Meilisearch\CaptainWatch.Api.Repository.Meilisearch.csproj" />
     <ProjectReference Include="..\CaptainWatch.Api.Services\CaptainWatch.Api.Services.csproj" />
+	<None Include="EmailTemplates\**\*" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
 </Project>

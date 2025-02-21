@@ -371,4 +371,3 @@ docker/data/sqlserver/*
 
 # Ignore appsettings files
 /src/CaptainWatch.Api/appsettings.Development.json
-/src/CaptainWatch.Api/appsettings.Development.json
