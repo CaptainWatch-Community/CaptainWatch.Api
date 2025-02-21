@@ -368,3 +368,7 @@ docker/data/sqlserver/*
 # Docker data allow empty folders to be committed by adding a .gitkeep file
 !docker/data/meilisearch/.gitkeep
 !docker/data/sqlserver/.gitkeep
+
+# Ignore appsettings files
+/src/CaptainWatch.Api/appsettings.Development.json
+/src/CaptainWatch.Api/appsettings.Development.json
