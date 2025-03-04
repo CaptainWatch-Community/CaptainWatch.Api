@@ -3,5 +3,6 @@
     public interface IMovieWriteService
     {
         Task Delete(int movieId);
-    }
+		Task UpdateWishCount();
+	}
 }

@@ -25,8 +25,12 @@ public partial class CaptainWatchContext : DbContext
 
     public virtual DbSet<UserProfile> UserProfile { get; set; }
 
+    public virtual DbSet<Wish> Wish { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.UseCollation("French_CI_AS");
+
         modelBuilder.Entity<ExtraUserInformation>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_dbo.ExtraUserInformation");
@@ -68,7 +72,7 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.FirstRecoActivity).HasColumnType("datetime");
             entity.Property(e => e.HomeHulkVersion).HasMaxLength(50);
-            entity.Property(e => e.InternalEmailValid).HasDefaultValueSql("((0))");
+            entity.Property(e => e.InternalEmailValid).HasDefaultValue(false);
             entity.Property(e => e.LastActivity).HasColumnType("datetime");
             entity.Property(e => e.LastActivityAppiOs)
                 .HasColumnType("datetime")
@@ -78,7 +82,7 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.LastWatchListConsult).HasColumnType("datetime");
             entity.Property(e => e.Step1Filled).HasColumnType("datetime");
             entity.Property(e => e.Title).HasMaxLength(1);
-            entity.Property(e => e.UnsubscribedAllMail).HasDefaultValueSql("((0))");
+            entity.Property(e => e.UnsubscribedAllMail).HasDefaultValue(false);
             entity.Property(e => e.UserFacebook)
                 .HasMaxLength(100)
                 .HasColumnName("user_facebook");
@@ -89,7 +93,7 @@ public partial class CaptainWatchContext : DbContext
                 .IsRequired()
                 .HasMaxLength(2)
                 .IsUnicode(false)
-                .HasDefaultValueSql("('fr')")
+                .HasDefaultValue("fr")
                 .IsFixedLength();
             entity.Property(e => e.UserScore).HasColumnName("user_score");
             entity.Property(e => e.UserSnapchat)
@@ -220,7 +224,7 @@ public partial class CaptainWatchContext : DbContext
             entity.Property(e => e.ImdbNumVotes).HasColumnName("imdb_num_votes");
             entity.Property(e => e.ImdbRating).HasColumnName("imdb_rating");
             entity.Property(e => e.IsFrench)
-                .HasDefaultValueSql("((0))")
+                .HasDefaultValue(false)
                 .HasColumnName("isFrench");
             entity.Property(e => e.ItunesLastUpdate)
                 .HasColumnType("datetime")
@@ -385,7 +389,7 @@ public partial class CaptainWatchContext : DbContext
                 .HasMaxLength(500)
                 .HasColumnName("name");
             entity.Property(e => e.NetflixAvailability)
-                .HasDefaultValueSql("((0))")
+                .HasDefaultValue(false)
                 .HasColumnName("netflix_availability");
             entity.Property(e => e.NetflixAvailabilityDate)
                 .HasColumnType("datetime")
@@ -452,7 +456,23 @@ public partial class CaptainWatchContext : DbContext
                 .HasMaxLength(56);
         });
 
-        OnModelCreatingGeneratedProcedures(modelBuilder);
+        modelBuilder.Entity<Wish>(entity =>
+        {
+            entity.HasIndex(e => e.Positive, "CL_Wish_Positive");
+
+            entity.HasIndex(e => new { e.UserId, e.Positive }, "CL_Wish_UserIdPositive");
+
+            entity.HasIndex(e => new { e.MovieId, e.UserId }, "NCI_WISH_MOVIEUSER");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.CreatedDate)
+                .HasColumnType("datetime")
+                .HasColumnName("created_date");
+            entity.Property(e => e.MovieId).HasColumnName("movie_id");
+            entity.Property(e => e.Positive).HasColumnName("positive");
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
 

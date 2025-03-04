@@ -29,5 +29,15 @@ namespace CaptainWatch.Api.Controllers.Movies
             await _movieServiceWrite.Delete(movieId);
             return NoContent();
         }
-    }
+
+		[HttpPut("wish-count")]
+		[SwaggerOperation(Summary = "Update wish count of all movies", Tags = new[] { "Movie" })]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		public async Task<ActionResult> UpdateWishCount()
+		{
+			await _movieServiceWrite.UpdateWishCount();
+			return NoContent();
+		}
+
+	}
 }

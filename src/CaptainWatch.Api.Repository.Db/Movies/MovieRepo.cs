@@ -43,5 +43,18 @@ namespace CaptainWatch.Api.Repository.Db.Movies
             return movies;
         }
 
-    }
+		public async Task UpdateWishCount()
+		{
+            await _dbContext.Movie
+                .ExecuteUpdateAsync(setter => setter.SetProperty(
+                    m => m.WatchlistCount,
+                    m => _dbContext.Wish
+					    .Where(w => w.MovieId == m.Id)
+						.GroupBy(w => w.MovieId)
+                        .Select(g => (int?)g.Count()) //Cast to (int?) to handle NULL
+						.FirstOrDefault() //Return NULL if no records found
+				));
+        }
+
+	}
 }
