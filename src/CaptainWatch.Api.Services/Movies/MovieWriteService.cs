@@ -22,5 +22,10 @@ namespace CaptainWatch.Api.Services.Movies
             await _movieRepo.DeleteMovie(movieId);
             await _searchWriteService.DeleteMovie(movieId);
         }
-    }
+
+		public async Task UpdateWishCount()
+		{
+			await _movieRepo.UpdateWishCount();
+		}
+	}
 }

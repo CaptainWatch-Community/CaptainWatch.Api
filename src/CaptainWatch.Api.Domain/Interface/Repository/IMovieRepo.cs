@@ -9,5 +9,6 @@ namespace CaptainWatch.Api.Domain.Interface.Repository
         Task<IEnumerable<MovieBo>> GetMoviesWithPositiveSiteScore();
         Task DeleteMovie(int movieId);
         Task<IEnumerable<SearchMovieAddOrUpdateBo>> GetAllMoviesForSearch();
-    }
+		Task UpdateWishCount();
+	}
 }
