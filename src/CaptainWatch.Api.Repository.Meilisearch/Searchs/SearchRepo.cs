@@ -19,47 +19,77 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
         {
             //Movie
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Movies.ToString());
-            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchMovie.Id).ToLower() });
-            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateSearchableAttributesAsync(new[]
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateFilterableAttributesAsync(new List<string>
             {
-                nameof(SearchMovie.Title).ToLower(),
-                nameof(SearchMovie.OriginalTitle).ToLower(),
-                nameof(SearchMovie.MinReleaseDate).ToLower(),
+                nameof(SearchMovie.Id).ToLowerFirst()
             });
-
-            //Serie
-            await _meilisearchClient.CreateIndexAsync(SearchCollection.Series.ToString());
-            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchSerie.Id).ToLower() });
-            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateSearchableAttributesAsync(new[]
-            {
-                nameof(SearchSerie.Title).ToLower(),
-                nameof(SearchSerie.OriginalTitle).ToLower(),
-                nameof(SearchSerie.FirstAirDate).ToLower(),
+            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateSearchableAttributesAsync(new List<string>
+			{
+                nameof(SearchMovie.Title).ToLowerFirst(),
+                nameof(SearchMovie.OriginalTitle).ToLowerFirst(),
+                nameof(SearchMovie.MinReleaseDate).ToLowerFirst(),
             });
-
-            //User
-            await _meilisearchClient.CreateIndexAsync(SearchCollection.Users.ToString());
-            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchUser.Id).ToLower() });
-            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateSearchableAttributesAsync(new[]
+			await _meilisearchClient.Index(SearchCollection.Movies.ToString()).UpdateRankingRulesAsync(new List<string>
             {
-                nameof(SearchUser.Pseudo).ToLower(),
-                nameof(SearchUser.FullName).ToLower(),
+                //Default ranking rules
+				nameof(SearchRankingRules.Words).ToLowerFirst(),
+				nameof(SearchRankingRules.Typo).ToLowerFirst(),
+				nameof(SearchRankingRules.Proximity).ToLowerFirst(),
+				nameof(SearchRankingRules.Attribute).ToLowerFirst(),
+				nameof(SearchRankingRules.Sort).ToLowerFirst(),
+				nameof(SearchRankingRules.Exactness).ToLowerFirst(),
+                //Custom ranking rules
+				nameof(SearchMovie.SiteScore).ToLowerFirst() + ":desc"
+			});
+
+			//Serie
+			await _meilisearchClient.CreateIndexAsync(SearchCollection.Series.ToString());
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateFilterableAttributesAsync(new List<string>
+            {
+                nameof(SearchSerie.Id).ToLowerFirst()
+            });
+            await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateSearchableAttributesAsync(new List<string>
+			{
+                nameof(SearchSerie.Title).ToLowerFirst(),
+                nameof(SearchSerie.OriginalTitle).ToLowerFirst(),
+                nameof(SearchSerie.FirstAirDate).ToLowerFirst(),
+            });
+			await _meilisearchClient.Index(SearchCollection.Series.ToString()).UpdateRankingRulesAsync(new List<string>
+			{
+                //Default ranking rules
+				nameof(SearchRankingRules.Words).ToLowerFirst(),
+				nameof(SearchRankingRules.Typo).ToLowerFirst(),
+				nameof(SearchRankingRules.Proximity).ToLowerFirst(),
+				nameof(SearchRankingRules.Attribute).ToLowerFirst(),
+				nameof(SearchRankingRules.Sort).ToLowerFirst(),
+				nameof(SearchRankingRules.Exactness).ToLowerFirst(),
+                //Custom ranking rules
+				nameof(SearchMovie.SiteScore).ToLowerFirst() + ":desc"
+			});
+
+			//User
+			await _meilisearchClient.CreateIndexAsync(SearchCollection.Users.ToString());
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchUser.Id).ToLowerFirst() });
+            await _meilisearchClient.Index(SearchCollection.Users.ToString()).UpdateSearchableAttributesAsync(new List<string>
+			{
+                nameof(SearchUser.Pseudo).ToLowerFirst(),
+                nameof(SearchUser.FullName).ToLowerFirst(),
             });
 
             //Person
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Persons.ToString());
-            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchPerson.Id).ToLower() });
-            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateSearchableAttributesAsync(new[]
-            {
-                nameof(SearchPerson.Name).ToLower(),
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchPerson.Id).ToLowerFirst() });
+            await _meilisearchClient.Index(SearchCollection.Persons.ToString()).UpdateSearchableAttributesAsync(new List<string>
+			{
+                nameof(SearchPerson.Name).ToLowerFirst(),
             });
 
             //List
             await _meilisearchClient.CreateIndexAsync(SearchCollection.Lists.ToString());
             await _meilisearchClient.Index(SearchCollection.Lists.ToString()).UpdateFilterableAttributesAsync(new List<string> { nameof(SearchList.Id).ToLower() });
-            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).UpdateSearchableAttributesAsync(new[]
+            await _meilisearchClient.Index(SearchCollection.Lists.ToString()).UpdateSearchableAttributesAsync(new List<string>
 {
-                nameof(SearchList.Name).ToLower(),
+                nameof(SearchList.Name).ToLowerFirst(),
             });
         }
 
@@ -67,9 +97,14 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
 
         public async Task AddMoviesDocuments(IEnumerable<SearchMovieAddOrUpdateBo> movies)
         {
-            var searchMovies = movies.ToEntity();
-            await _meilisearchClient.Index(SearchCollection.Movies.ToString()).AddDocumentsAsync(searchMovies);
-        }
+			const int batchSize = 10000;
+			var searchMovies = movies.ToEntity();
+
+			foreach (var batchMovies in searchMovies.Chunk(batchSize))
+			{
+				await _meilisearchClient.Index(SearchCollection.Movies.ToString()).AddDocumentsAsync(batchMovies);
+			}
+		}
 
         public async Task DeleteAllMoviesDocuments()
         {
@@ -89,7 +124,7 @@ namespace CaptainWatch.Api.Repository.Meilisearch.Searchs
 
         public async Task<IEnumerable<SearchMovieBo>> SearchMovies(SearchMovieQueryBo query)
         {
-            var searchQuery = new SearchQuery
+			var searchQuery = new SearchQuery
             {
                 ShowRankingScore = true,
                 Limit = query.MaxResults,

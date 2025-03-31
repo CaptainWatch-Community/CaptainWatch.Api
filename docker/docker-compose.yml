@@ -2,7 +2,7 @@ name: captain_watch
 
 services:
   meilisearch:
-    image: getmeili/meilisearch:v1.7.6
+    image: getmeili/meilisearch:v1.13.3
     container_name: cw_meilisearch
     ports:
       - "7700:7700"

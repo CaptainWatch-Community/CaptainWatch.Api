@@ -56,7 +56,8 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
             Id = movie.Id,
             Title = movie.Title,
             OriginalTitle = movie.OriginalTitle,
-            MinReleaseDate = movie.MinReleaseDate
+            MinReleaseDate = movie.MinReleaseDate,
+			SiteScore = movie.SiteScore
         };
     }
 }
