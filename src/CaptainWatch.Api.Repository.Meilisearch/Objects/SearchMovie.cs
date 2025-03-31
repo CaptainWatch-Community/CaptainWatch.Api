@@ -6,5 +6,6 @@ public class SearchMovie
     public string Title { get; set; } = string.Empty;
     public string OriginalTitle { get; set; } = string.Empty;
     public DateTime? MinReleaseDate { get; set; }
+	public double? SiteScore { get; set; }
 
 }

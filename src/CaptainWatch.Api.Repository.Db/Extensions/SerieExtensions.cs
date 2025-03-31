@@ -27,7 +27,8 @@ namespace CaptainWatch.Api.Repository.Db.Extensions
             Id = serie.Id,
             Title = serie.Name,
             OriginalTitle = serie.OriginalName,
-            FirstAirDate = serie.FirstAirDate
+            FirstAirDate = serie.FirstAirDate,
+			SiteScore = serie.SiteScore,
         };
     }
 }

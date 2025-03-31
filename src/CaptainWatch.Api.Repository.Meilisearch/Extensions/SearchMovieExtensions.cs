@@ -17,8 +17,9 @@ namespace CaptainWatch.Api.Repository.Melisearch.Extensions
                 Id = s.Id,
                 Title = s.Title,
                 OriginalTitle = s.OriginalTitle,
-                MinReleaseDate = s.MinReleaseDate
-            };
+                MinReleaseDate = s.MinReleaseDate,
+                SiteScore = s.SiteScore
+			};
         }
     }
 }
